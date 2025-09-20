@@ -1,0 +1,87 @@
+{
+  "pipeline": {
+    "name": "Cookie Orders Pipeline",
+    "description": "Pipeline for tracking cookie orders from submission to delivery",
+    "stages": [
+      {
+        "id": "stage_1",
+        "name": "New Order",
+        "description": "Order has been submitted and is awaiting processing",
+        "color": "#FF6B6B",
+        "position": 1,
+        "actions": [
+          "Send order confirmation email to customer",
+          "Send internal notification to team",
+          "Create invoice for customer"
+        ]
+      },
+      {
+        "id": "stage_2",
+        "name": "Processing",
+        "description": "Order is being reviewed and prepared for baking",
+        "color": "#4ECDC4",
+        "position": 2,
+        "actions": [
+          "Verify customer information",
+          "Check ingredient availability",
+          "Schedule baking time"
+        ]
+      },
+      {
+        "id": "stage_3",
+        "name": "Baking",
+        "description": "Cookies are being freshly baked",
+        "color": "#45B7D1",
+        "position": 3,
+        "actions": [
+          "Start baking process",
+          "Quality check cookies",
+          "Package for delivery"
+        ]
+      },
+      {
+        "id": "stage_4",
+        "name": "Ready for Delivery",
+        "description": "Cookies are baked and ready for pickup/delivery",
+        "color": "#96CEB4",
+        "position": 4,
+        "actions": [
+          "Notify customer order is ready",
+          "Schedule delivery or pickup",
+          "Prepare delivery instructions"
+        ]
+      },
+      {
+        "id": "stage_5",
+        "name": "Delivered",
+        "description": "Order has been delivered to customer",
+        "color": "#FFEAA7",
+        "position": 5,
+        "actions": [
+          "Confirm delivery with customer",
+          "Request feedback",
+          "Update delivery records"
+        ]
+      },
+      {
+        "id": "stage_6",
+        "name": "Completed",
+        "description": "Order is complete and customer is satisfied",
+        "color": "#DDA0DD",
+        "position": 6,
+        "actions": [
+          "Send thank you email",
+          "Request review",
+          "Add to customer database for future orders"
+        ]
+      }
+    ]
+  },
+  "setup_instructions": [
+    "1. Create a new pipeline in GHL called 'Cookie Orders Pipeline'",
+    "2. Add the 6 stages listed above in the correct order",
+    "3. Set the colors and descriptions as specified",
+    "4. Configure the pipeline to automatically create opportunities from form submissions",
+    "5. Set up the automated workflows for each stage transition"
+  ]
+}

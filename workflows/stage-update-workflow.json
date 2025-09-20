@@ -1,0 +1,104 @@
+{
+  "workflow": {
+    "name": "Pipeline Stage Update Notifications",
+    "description": "Sends email updates to customers when order moves through pipeline stages",
+    "trigger": {
+      "type": "opportunity_stage_changed",
+      "conditions": [
+        {
+          "field": "pipeline_id",
+          "operator": "equals",
+          "value": "YOUR_PIPELINE_ID"
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "send_email",
+        "name": "Stage Update Email",
+        "template": "stage_update",
+        "to": "{{contact.email}}",
+        "subject": "Order Update - {{opportunity.customFields.order_number}}",
+        "delay": 0,
+        "conditions": [
+          {
+            "field": "opportunity.stage.name",
+            "operator": "not_equals",
+            "value": "New Order"
+          }
+        ],
+        "variables": {
+          "customer_name": "{{contact.firstName}}",
+          "order_number": "{{opportunity.customFields.order_number}}",
+          "current_stage": "{{opportunity.stage.name}}",
+          "stage_description": "{{opportunity.stage.description}}",
+          "total_items": "{{opportunity.customFields.total_items}}",
+          "total_value": "{{opportunity.customFields.total_value}}"
+        }
+      }
+    ],
+    "settings": {
+      "enabled": true,
+      "priority": "medium"
+    }
+  },
+  "stage_specific_workflows": {
+    "Processing": {
+      "name": "Order Processing Update",
+      "subject": "Your Order is Being Processed - Happily Ever Bakers",
+      "template": "processing_update"
+    },
+    "Baking": {
+      "name": "Baking Started Update",
+      "subject": "Your Cookies are Being Baked! - Happily Ever Bakers",
+      "template": "baking_update"
+    },
+    "Ready for Delivery": {
+      "name": "Ready for Delivery Update",
+      "subject": "Your Cookies are Ready! - Happily Ever Bakers",
+      "template": "ready_for_delivery_update"
+    },
+    "Delivered": {
+      "name": "Delivery Confirmation",
+      "subject": "Your Cookies Have Been Delivered! - Happily Ever Bakers",
+      "template": "delivery_confirmation"
+    },
+    "Completed": {
+      "name": "Order Completion",
+      "subject": "Thank You for Your Order! - Happily Ever Bakers",
+      "template": "order_completion"
+    }
+  },
+  "email_templates": {
+    "stage_update": {
+      "name": "stage_update",
+      "subject": "Order Update - {{order_number}}",
+      "html_content": "<!DOCTYPE html><html><head><meta charset='UTF-8'><style>body{font-family:Arial,sans-serif;max-width:600px;margin:0 auto;line-height:1.6}header{background:#8B4513;color:white;padding:20px;text-align:center}main{padding:30px}h1{color:#8B4513}.status-box{background:#f8f9fa;padding:20px;border-radius:10px;margin:20px 0;border-left:4px solid #4ECDC4}.order-details{background:#e8f5e8;padding:20px;border-radius:10px;margin:20px 0}</style></head><body><header><h1>🍪 Happily Ever Bakers</h1></header><main><h2>Order Update</h2><p>Dear {{customer_name}},</p><p>Your order #{{order_number}} has been updated!</p><div class='status-box'><h3>Current Status: {{current_stage}}</h3><p>{{stage_description}}</p></div><div class='order-details'><h3>Order Summary</h3><p><strong>Order Number:</strong> {{order_number}}</p><p><strong>Total Items:</strong> {{total_items}}</p><p><strong>Total Value:</strong> ${{total_value}}</p></div><p>We'll continue to keep you updated as your order progresses.</p><p>Thank you for choosing Happily Ever Bakers!</p></main></body></html>"
+    },
+    "processing_update": {
+      "name": "processing_update",
+      "subject": "Your Order is Being Processed - Happily Ever Bakers",
+      "html_content": "<!DOCTYPE html><html><head><meta charset='UTF-8'><style>body{font-family:Arial,sans-serif;max-width:600px;margin:0 auto;line-height:1.6}header{background:#8B4513;color:white;padding:20px;text-align:center}main{padding:30px}h1{color:#8B4513}.status-box{background:#4ECDC4;color:white;padding:20px;border-radius:10px;margin:20px 0}</style></head><body><header><h1>🍪 Happily Ever Bakers</h1></header><main><h2>Order Processing Started</h2><p>Dear {{customer_name}},</p><p>Great news! We've started processing your order #{{order_number}}.</p><div class='status-box'><h3>What We're Doing Now:</h3><ul><li>✓ Verifying your order details</li><li>✓ Checking ingredient availability</li><li>✓ Scheduling your baking time</li><li>✓ Preparing your invoice</li></ul></div><p>Your cookies will be baked fresh and delivered to you soon!</p></main></body></html>"
+    },
+    "baking_update": {
+      "name": "baking_update",
+      "subject": "Your Cookies are Being Baked! - Happily Ever Bakers",
+      "html_content": "<!DOCTYPE html><html><head><meta charset='UTF-8'><style>body{font-family:Arial,sans-serif;max-width:600px;margin:0 auto;line-height:1.6}header{background:#8B4513;color:white;padding:20px;text-align:center}main{padding:30px}h1{color:#8B4513}.status-box{background:#45B7D1;color:white;padding:20px;border-radius:10px;margin:20px 0}</style></head><body><header><h1>🍪 Happily Ever Bakers</h1></header><main><h2>Baking in Progress!</h2><p>Dear {{customer_name}},</p><p>Your cookies are in the oven! 🍪</p><div class='status-box'><h3>Currently Baking:</h3><ul><li>🔥 Fresh cookies in the oven</li><li>👨‍🍳 Our bakers are working their magic</li><li>✨ Quality checking each batch</li><li>📦 Preparing for packaging</li></ul></div><p>The delicious aroma is filling our bakery as we create your perfect cookies!</p></main></body></html>"
+    },
+    "ready_for_delivery_update": {
+      "name": "ready_for_delivery_update",
+      "subject": "Your Cookies are Ready! - Happily Ever Bakers",
+      "html_content": "<!DOCTYPE html><html><head><meta charset='UTF-8'><style>body{font-family:Arial,sans-serif;max-width:600px;margin:0 auto;line-height:1.6}header{background:#8B4513;color:white;padding:20px;text-align:center}main{padding:30px}h1{color:#8B4513}.status-box{background:#96CEB4;color:white;padding:20px;border-radius:10px;margin:20px 0}.delivery-info{background:#fff3cd;padding:20px;border-radius:10px;margin:20px 0}</style></head><body><header><h1>🍪 Happily Ever Bakers</h1></header><main><h2>Your Cookies are Ready!</h2><p>Dear {{customer_name}},</p><p>Excellent news! Your order #{{order_number}} is ready for delivery.</p><div class='status-box'><h3>✅ Order Complete:</h3><ul><li>🍪 Fresh cookies baked to perfection</li><li>📦 Carefully packaged for delivery</li><li>🚚 Ready for pickup or delivery</li></ul></div><div class='delivery-info'><h3>Delivery Information:</h3><p>We'll contact you shortly to arrange delivery or pickup. If you have any special delivery instructions, please let us know.</p></div><p>Your delicious cookies are waiting for you!</p></main></body></html>"
+    },
+    "delivery_confirmation": {
+      "name": "delivery_confirmation",
+      "subject": "Your Cookies Have Been Delivered! - Happily Ever Bakers",
+      "html_content": "<!DOCTYPE html><html><head><meta charset='UTF-8'><style>body{font-family:Arial,sans-serif;max-width:600px;margin:0 auto;line-height:1.6}header{background:#8B4513;color:white;padding:20px;text-align:center}main{padding:30px}h1{color:#8B4513}.status-box{background:#FFEAA7;color:#8B4513;padding:20px;border-radius:10px;margin:20px 0}.feedback-box{background:#f8f9fa;padding:20px;border-radius:10px;margin:20px 0}</style></head><body><header><h1>🍪 Happily Ever Bakers</h1></header><main><h2>Delivery Confirmed!</h2><p>Dear {{customer_name}},</p><p>Your order #{{order_number}} has been successfully delivered!</p><div class='status-box'><h3>🎉 Enjoy Your Cookies!</h3><p>We hope you love your fresh-baked cookies. They were made with love and the finest ingredients.</p></div><div class='feedback-box'><h3>We'd Love Your Feedback!</h3><p>Your experience is important to us. Please take a moment to let us know how we did:</p><ul><li>How did your cookies taste?</li><li>Was the delivery process smooth?</li><li>Would you recommend us to friends?</li></ul></div><p>Thank you for choosing Happily Ever Bakers!</p></main></body></html>"
+    },
+    "order_completion": {
+      "name": "order_completion",
+      "subject": "Thank You for Your Order! - Happily Ever Bakers",
+      "html_content": "<!DOCTYPE html><html><head><meta charset='UTF-8'><style>body{font-family:Arial,sans-serif;max-width:600px;margin:0 auto;line-height:1.6}header{background:#8B4513;color:white;padding:20px;text-align:center}main{padding:30px}h1{color:#8B4513}.thank-you-box{background:#DDA0DD;color:white;padding:20px;border-radius:10px;margin:20px 0}.next-steps{background:#f8f9fa;padding:20px;border-radius:10px;margin:20px 0}</style></head><body><header><h1>🍪 Happily Ever Bakers</h1></header><main><h2>Order Complete!</h2><p>Dear {{customer_name}},</p><div class='thank-you-box'><h3>Thank You for Your Order!</h3><p>We're thrilled that you chose Happily Ever Bakers for your cookie needs. Your order #{{order_number}} has been completed successfully.</p></div><div class='next-steps'><h3>What's Next?</h3><ul><li>🍪 Enjoy your delicious cookies!</li><li>⭐ Leave us a review if you loved them</li><li>📧 Join our newsletter for special offers</li><li>🔄 Order again anytime - we'd love to bake for you again!</li></ul></div><p>We look forward to serving you again soon!</p><p>With love,<br>The Happily Ever Bakers Team</p></main></body></html>"
+    }
+  }
+}

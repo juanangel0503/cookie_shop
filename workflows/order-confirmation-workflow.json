@@ -1,0 +1,43 @@
+{
+  "workflow": {
+    "name": "Order Confirmation Email",
+    "description": "Sends confirmation email to customer when new order is created",
+    "trigger": {
+      "type": "opportunity_created",
+      "conditions": [
+        {
+          "field": "pipeline_id",
+          "operator": "equals",
+          "value": "YOUR_PIPELINE_ID"
+        }
+      ]
+    },
+    "actions": [
+      {
+        "type": "send_email",
+        "name": "Send Order Confirmation",
+        "template": "order_confirmation",
+        "to": "{{contact.email}}",
+        "subject": "Order Confirmed - Happily Ever Bakers 🍪",
+        "delay": 0,
+        "variables": {
+          "customer_name": "{{contact.firstName}}",
+          "order_number": "{{opportunity.customFields.order_number}}",
+          "total_items": "{{opportunity.customFields.total_items}}",
+          "total_value": "{{opportunity.customFields.total_value}}",
+          "delivery_address": "{{contact.address1}}",
+          "special_instructions": "{{opportunity.customFields.special_instructions}}"
+        }
+      }
+    ],
+    "settings": {
+      "enabled": true,
+      "priority": "high"
+    }
+  },
+  "email_template": {
+    "name": "order_confirmation",
+    "subject": "Order Confirmed - Happily Ever Bakers 🍪",
+    "html_content": "<!DOCTYPE html><html><head><meta charset='UTF-8'><style>body{font-family:Arial,sans-serif;max-width:600px;margin:0 auto;line-height:1.6}header{background:#8B4513;color:white;padding:20px;text-align:center}main{padding:30px}h1{color:#8B4513}.order-details{background:#f8f9fa;padding:20px;border-radius:10px;margin:20px 0}.highlight{background:#fff3cd;padding:15px;border-radius:8px;margin:15px 0}</style></head><body><header><h1>🍪 Happily Ever Bakers</h1></header><main><h2>Order Confirmed!</h2><p>Dear {{customer_name}},</p><p>Thank you for your order! We're excited to bake your delicious cookies fresh just for you.</p><div class='order-details'><h3>Order Details</h3><p><strong>Order Number:</strong> {{order_number}}</p><p><strong>Total Items:</strong> {{total_items}}</p><p><strong>Total Value:</strong> ${{total_value}}</p><p><strong>Delivery Address:</strong> {{delivery_address}}</p></div><div class='highlight'><strong>📋 Order Now, Invoice Later!</strong><br>No payment required upfront. We'll send you an invoice shortly for payment.</div><h3>What's Next?</h3><ul><li>📧 You'll receive an invoice for payment</li><li>🍪 We'll start baking your fresh cookies</li><li>📦 You'll get updates as your order progresses</li><li>🚚 We'll deliver your cookies fresh and delicious</li></ul><p>If you have any questions or special requests, please don't hesitate to contact us.</p><p>Thank you for choosing Happily Ever Bakers!</p><p>Best regards,<br>The Happily Ever Bakers Team</p></main></body></html>"
+  }
+}
