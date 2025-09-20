@@ -82,32 +82,40 @@ export default function HeroCarousel() {
         {/* Main Carousel Slide */}
         <div className="carousel-slide">
           <div className="slide-content">
-            <div className="slide-image">
-              <Image
-                src={carouselItems[currentIndex].image}
-                alt={carouselItems[currentIndex].title}
-                fill
-                className="carousel-image"
-                priority={currentIndex === 0}
-              />
-            </div>
-            <div className="slide-info">
-              <h1 className="slide-title">{carouselItems[currentIndex].title}</h1>
-              <p className="slide-description">{carouselItems[currentIndex].description}</p>
-              <div className="slide-actions">
-                <button className="learn-more-btn">Learn More</button>
-                <button className="order-now-btn">{carouselItems[currentIndex].ctaText}</button>
+            {/* Product Image - Centered and Prominent */}
+            <div className="product-showcase">
+              <div className="product-image-container">
+                <Image
+                  src={carouselItems[currentIndex].image}
+                  alt={carouselItems[currentIndex].title}
+                  fill
+                  className="product-image"
+                  priority={currentIndex === 0}
+                />
+                {/* Product Shadow */}
+                <div className="product-shadow"></div>
               </div>
+            </div>
+
+            {/* Product Info - Below the image */}
+            <div className="product-info">
+              <h1 className="product-title">{carouselItems[currentIndex].title}</h1>
+              <p className="product-description">{carouselItems[currentIndex].description}</p>
+              <button className="order-now-btn">{carouselItems[currentIndex].ctaText}</button>
             </div>
           </div>
         </div>
 
         {/* Navigation Arrows */}
         <button className="carousel-arrow carousel-arrow-left" onClick={prevSlide}>
-          <span>‹</span>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+          </svg>
         </button>
         <button className="carousel-arrow carousel-arrow-right" onClick={nextSlide}>
-          <span>›</span>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+          </svg>
         </button>
 
         {/* Carousel Indicators */}
@@ -123,13 +131,16 @@ export default function HeroCarousel() {
 
         {/* Auto-play Toggle */}
         <button className="autoplay-toggle" onClick={toggleAutoPlay}>
-          {isAutoPlaying ? '⏸️' : '▶️'}
+          {isAutoPlaying ? (
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+            </svg>
+          ) : (
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+          )}
         </button>
-
-        {/* Week Label */}
-        <div className="week-label">
-          Week of Sep 16 - 21
-        </div>
       </div>
 
       <style jsx>{`
@@ -137,16 +148,22 @@ export default function HeroCarousel() {
           position: relative;
           width: 100%;
           height: 100vh;
-          min-height: 700px;
-          background: #f8f9fa;
+          min-height: 800px;
+          background: linear-gradient(135deg, #FF6B35 0%, #F7931E 100%);
           overflow: hidden;
           margin-top: 80px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
         }
 
         .carousel-container {
           position: relative;
           width: 100%;
           height: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
         }
 
         .carousel-slide {
@@ -158,106 +175,102 @@ export default function HeroCarousel() {
         }
 
         .slide-content {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 5rem;
-          max-width: 1400px;
-          width: 100%;
-          padding: 0 3rem;
+          display: flex;
+          flex-direction: column;
           align-items: center;
-        }
-
-        .slide-image {
-          position: relative;
+          justify-content: center;
+          max-width: 1200px;
           width: 100%;
-          height: 600px;
-          border-radius: 25px;
-          overflow: hidden;
-          box-shadow: 0 25px 50px rgba(0,0,0,0.15);
-          background: white;
+          padding: 0 2rem;
+          text-align: center;
         }
 
-        .carousel-image {
+        .product-showcase {
+          position: relative;
+          margin-bottom: 3rem;
+        }
+
+        .product-image-container {
+          position: relative;
+          width: 600px;
+          height: 500px;
+          border-radius: 30px;
+          overflow: hidden;
+          background: white;
+          box-shadow: 0 30px 60px rgba(0,0,0,0.2);
+          transform: perspective(1000px) rotateY(-5deg) rotateX(5deg);
+          transition: transform 0.3s ease;
+        }
+
+        .product-image-container:hover {
+          transform: perspective(1000px) rotateY(-2deg) rotateX(2deg) scale(1.02);
+        }
+
+        .product-image {
           object-fit: cover;
           transition: transform 0.3s ease;
         }
 
-        .slide-image:hover .carousel-image {
-          transform: scale(1.05);
+        .product-shadow {
+          position: absolute;
+          bottom: -20px;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 80%;
+          height: 40px;
+          background: radial-gradient(ellipse, rgba(0,0,0,0.3) 0%, transparent 70%);
+          border-radius: 50%;
+          filter: blur(10px);
         }
 
-        .slide-info {
-          padding: 2rem 0;
+        .product-info {
+          max-width: 800px;
+          color: white;
         }
 
-        .slide-title {
-          font-size: 4rem;
+        .product-title {
+          font-size: 3.5rem;
           font-weight: 800;
-          color: #2c2c2c;
-          margin-bottom: 2rem;
+          margin-bottom: 1.5rem;
           line-height: 1.1;
           letter-spacing: -0.02em;
+          text-shadow: 0 4px 8px rgba(0,0,0,0.3);
         }
 
-        .slide-description {
+        .product-description {
           font-size: 1.3rem;
-          color: #666;
-          line-height: 1.7;
-          margin-bottom: 3rem;
-          max-width: 550px;
-        }
-
-        .slide-actions {
-          display: flex;
-          gap: 2rem;
-          align-items: center;
-        }
-
-        .learn-more-btn {
-          background: transparent;
-          border: 2px solid #E91E63;
-          color: #E91E63;
-          padding: 16px 32px;
-          border-radius: 30px;
-          font-size: 1.1rem;
-          font-weight: 600;
-          cursor: pointer;
-          transition: all 0.3s ease;
-          letter-spacing: 0.5px;
-        }
-
-        .learn-more-btn:hover {
-          background: #E91E63;
-          color: white;
-          transform: translateY(-3px);
-          box-shadow: 0 8px 25px rgba(233, 30, 99, 0.3);
+          line-height: 1.6;
+          margin-bottom: 2.5rem;
+          opacity: 0.95;
+          text-shadow: 0 2px 4px rgba(0,0,0,0.3);
         }
 
         .order-now-btn {
-          background: #E91E63;
+          background: #2c2c2c;
           border: none;
           color: white;
-          padding: 16px 32px;
-          border-radius: 30px;
-          font-size: 1.1rem;
-          font-weight: 600;
+          padding: 18px 40px;
+          border-radius: 35px;
+          font-size: 1.2rem;
+          font-weight: 700;
           cursor: pointer;
           transition: all 0.3s ease;
           letter-spacing: 0.5px;
-          box-shadow: 0 4px 15px rgba(233, 30, 99, 0.3);
+          box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+          text-transform: uppercase;
         }
 
         .order-now-btn:hover {
-          background: #C2185B;
+          background: #1a1a1a;
           transform: translateY(-3px);
-          box-shadow: 0 8px 25px rgba(233, 30, 99, 0.4);
+          box-shadow: 0 12px 35px rgba(0,0,0,0.4);
         }
 
         .carousel-arrow {
           position: absolute;
           top: 50%;
           transform: translateY(-50%);
-          background: rgba(255, 255, 255, 0.95);
+          background: rgba(255, 255, 255, 0.9);
           border: none;
           width: 60px;
           height: 60px;
@@ -266,8 +279,7 @@ export default function HeroCarousel() {
           align-items: center;
           justify-content: center;
           cursor: pointer;
-          font-size: 1.8rem;
-          color: #E91E63;
+          color: #FF6B35;
           box-shadow: 0 8px 25px rgba(0,0,0,0.15);
           transition: all 0.3s ease;
           z-index: 10;
@@ -293,47 +305,48 @@ export default function HeroCarousel() {
           left: 50%;
           transform: translateX(-50%);
           display: flex;
-          gap: 0.75rem;
+          gap: 1rem;
           z-index: 10;
         }
 
         .indicator {
-          width: 14px;
-          height: 14px;
+          width: 12px;
+          height: 12px;
           border-radius: 50%;
-          border: none;
-          background: rgba(255, 255, 255, 0.6);
+          border: 2px solid rgba(255, 255, 255, 0.6);
+          background: transparent;
           cursor: pointer;
           transition: all 0.3s ease;
         }
 
         .indicator.active {
-          background: #E91E63;
-          transform: scale(1.3);
+          background: white;
+          border-color: white;
+          transform: scale(1.2);
         }
 
         .indicator:hover {
-          background: rgba(233, 30, 99, 0.8);
-          transform: scale(1.2);
+          border-color: white;
+          transform: scale(1.1);
         }
 
         .autoplay-toggle {
           position: absolute;
           bottom: 3rem;
           right: 3rem;
-          background: rgba(0, 0, 0, 0.8);
+          background: rgba(0, 0, 0, 0.7);
           border: none;
           color: white;
-          width: 45px;
-          height: 45px;
+          width: 50px;
+          height: 50px;
           border-radius: 50%;
           display: flex;
           align-items: center;
           justify-content: center;
           cursor: pointer;
-          font-size: 1.1rem;
           transition: all 0.3s ease;
           z-index: 10;
+          backdrop-filter: blur(10px);
         }
 
         .autoplay-toggle:hover {
@@ -341,80 +354,57 @@ export default function HeroCarousel() {
           transform: scale(1.1);
         }
 
-        .week-label {
-          position: absolute;
-          top: 3rem;
-          left: 3rem;
-          background: #E91E63;
-          color: white;
-          padding: 12px 20px;
-          border-radius: 25px;
-          font-size: 1rem;
-          font-weight: 600;
-          z-index: 10;
-          box-shadow: 0 4px 15px rgba(233, 30, 99, 0.3);
-        }
-
         @media (max-width: 1024px) {
-          .slide-content {
-            gap: 3rem;
-            padding: 0 2rem;
+          .product-image-container {
+            width: 500px;
+            height: 400px;
           }
 
-          .slide-image {
-            height: 500px;
-          }
-
-          .slide-title {
+          .product-title {
             font-size: 3rem;
           }
 
-          .slide-description {
+          .product-description {
             font-size: 1.1rem;
           }
         }
 
         @media (max-width: 768px) {
           .hero-carousel {
-            min-height: 600px;
+            min-height: 700px;
           }
 
           .slide-content {
-            grid-template-columns: 1fr;
-            gap: 2rem;
             padding: 0 1.5rem;
-            text-align: center;
           }
 
-          .slide-image {
-            height: 400px;
-            order: 1;
+          .product-image-container {
+            width: 400px;
+            height: 320px;
+            transform: none;
           }
 
-          .slide-info {
-            order: 2;
-            padding: 1rem 0;
+          .product-image-container:hover {
+            transform: scale(1.02);
           }
 
-          .slide-title {
+          .product-title {
             font-size: 2.5rem;
           }
 
-          .slide-description {
+          .product-description {
             font-size: 1rem;
             margin-bottom: 2rem;
           }
 
-          .slide-actions {
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 1rem;
+          .order-now-btn {
+            padding: 16px 32px;
+            font-size: 1.1rem;
           }
 
           .carousel-arrow {
             width: 50px;
             height: 50px;
-            font-size: 1.5rem;
           }
 
           .carousel-arrow-left {
@@ -424,25 +414,22 @@ export default function HeroCarousel() {
           .carousel-arrow-right {
             right: 1.5rem;
           }
-
-          .week-label {
-            top: 1.5rem;
-            left: 1.5rem;
-            font-size: 0.9rem;
-            padding: 10px 16px;
-          }
         }
 
         @media (max-width: 480px) {
-          .slide-title {
+          .product-image-container {
+            width: 320px;
+            height: 260px;
+          }
+
+          .product-title {
             font-size: 2rem;
           }
 
-          .slide-description {
+          .product-description {
             font-size: 0.95rem;
           }
 
-          .learn-more-btn,
           .order-now-btn {
             padding: 14px 28px;
             font-size: 1rem;
@@ -451,7 +438,6 @@ export default function HeroCarousel() {
           .carousel-arrow {
             width: 45px;
             height: 45px;
-            font-size: 1.3rem;
           }
 
           .carousel-arrow-left {
