@@ -6,6 +6,7 @@ import { useCart } from '@/lib/cart-context';
 import { PackOption, SelectedCookie } from '@/types';
 import CartSidebar from '@/components/CartSidebar';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function HomePage() {
   const { state, dispatch, addToCart } = useCart();
@@ -135,6 +136,7 @@ export default function HomePage() {
             <a href="#home">Home</a>
             <a href="#cookies">Cookies</a>
             <a href="#about">About</a>
+            <Link href="/dashboard" className="dashboard-link">Dashboard</Link>
           </nav>
           <div className="cart-icon" onClick={() => setIsCartOpen(true)}>
             <span className="cart-count">{state.items.reduce((sum, item) => sum + item.quantity, 0)}</span>
@@ -149,17 +151,22 @@ export default function HomePage() {
           <div className="hero-content">
             <h2>Handcrafted Cookies Made Daily</h2>
             <p>Premium ingredients, traditional recipes, delivered fresh to your door. Experience the perfect blend of artisanal craftsmanship and modern convenience.</p>
-            <button 
-              className="cta-button" 
-              onClick={() => document.getElementById('packSelection')?.scrollIntoView({ behavior: 'smooth' })}
-            >
-              🍪 Shop Our Cookies
-            </button>
+            <div className="hero-actions">
+              <button 
+                className="cta-button" 
+                onClick={() => document.getElementById('packSelection')?.scrollIntoView({ behavior: 'smooth' })}
+              >
+                🍪 Shop Our Cookies
+              </button>
+              <Link href="/dashboard" className="dashboard-cta">
+                View Dashboard
+              </Link>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Main Content */}
+      {/* Enhanced Main Content */}
       <main className="main-content">
         <div className="container">
           {/* Pack Selection Section */}
@@ -197,7 +204,7 @@ export default function HomePage() {
                 <p>Select {currentPack.size} cookies for your pack. You can choose multiple of the same flavor!</p>
               </div>
 
-              {/* Search and Filter */}
+              {/* Enhanced Search and Filter */}
               <div className="search-filter-container">
                 <div className="search-box">
                   <input 
@@ -312,7 +319,7 @@ export default function HomePage() {
         </div>
       </main>
 
-      {/* HEB Footer */}
+      {/* Enhanced Footer */}
       <footer className="footer">
         <div className="container">
           <div className="footer-content">
