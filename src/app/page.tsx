@@ -110,13 +110,19 @@ export default function HomePage() {
     setCategoryFilter('');
   };
 
+  const getCategories = () => {
+    const categories = cookieFlavors.map(cookie => cookie.category);
+    return Array.from(new Set(categories));
+  };
+
   return (
     <div className="min-h-screen">
-      {/* Header */}
+      {/* Enhanced Header */}
       <header className="header">
         <div className="container">
           <div className="logo">
-            <h1>🍪 Happily Ever Bakers</h1>
+            <span className="logo-icon">🍪</span>
+            <h1>Happily Ever Bakers</h1>
           </div>
           <nav className="nav">
             <a href="#home">Home</a>
@@ -130,145 +136,176 @@ export default function HomePage() {
         </div>
       </header>
 
-      {/* Hero Section */}
-      <section className="hero">
+      {/* Enhanced Hero Section */}
+      <section className="hero" id="home">
         <div className="container">
           <div className="hero-content">
             <h2>Handcrafted Cookies Made Daily</h2>
-            <p>Premium ingredients, traditional recipes, delivered fresh to your door</p>
+            <p>Premium ingredients, traditional recipes, delivered fresh to your door. Experience the perfect blend of artisanal craftsmanship and modern convenience.</p>
             <button 
               className="cta-button" 
               onClick={() => document.getElementById('packSelection')?.scrollIntoView({ behavior: 'smooth' })}
             >
-              Shop Our Cookies
+              🍪 Shop Our Cookies
             </button>
           </div>
         </div>
       </section>
 
-      {/* Search and Filter Section */}
-      {currentPack && (
-        <section className="search-filter-section">
-          <div className="container">
-            <div className="search-filter-container">
-              <div className="search-box">
-                <input 
-                  type="text" 
-                  placeholder="Search cookie flavors..." 
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                />
-                <span className="search-icon">🔍</span>
-              </div>
-              <div className="filter-options">
-                <select 
-                  value={categoryFilter}
-                  onChange={(e) => setCategoryFilter(e.target.value)}
-                >
-                  <option value="">All Categories</option>
-                  <option value="chocolate">Chocolate</option>
-                  <option value="classic">Classic</option>
-                  <option value="fruity">Fruity</option>
-                  <option value="seasonal">Seasonal</option>
-                </select>
-                <button className="clear-filters" onClick={clearFilters}>
-                  Clear Filters
-                </button>
-              </div>
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* Pack Selection Section */}
-      <section className="pack-selection-section" id="packSelection" style={{ display: currentPack ? 'none' : 'block' }}>
+      {/* Enhanced Main Content */}
+      <main className="main-content">
         <div className="container">
-          <h2>Choose Your Pack Size</h2>
-          <div className="pack-options">
-            {packOptions.map(pack => {
-              const savings = pack.size > 1 ? calculateSavings(pack.size, pack.price) : 0;
-              return (
-                <div key={pack.id} className="pack-option" onClick={() => selectPack(pack)}>
-                  <div className="pack-icon">📦</div>
-                  <h3>{pack.name}</h3>
-                  <p>{pack.size === 1 ? 'Single cookie' : `Choose ${pack.size} cookies`}</p>
-                  <div className="pack-price">${pack.price.toFixed(2)}</div>
-                  {savings > 0 && <div className="save-badge">Save {savings}%</div>}
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* Cookie Selection Section */}
-      {currentPack && (
-        <section className="cookie-selection-section">
-          <div className="container">
-            <div className="selection-header">
-              <div className="back-to-packs">
-                <button className="back-btn" onClick={backToPackSelection}>
-                  ← Back to Pack Selection
-                </button>
-              </div>
-              <h2>Select {currentPack.size} Flavors</h2>
-              <div className="pack-progress">
-                <span>{getTotalSelectedInPack()}</span> of <span>{currentPack.size}</span> cookies selected
-              </div>
-            </div>
-            <div className="cookie-flavors">
-              {filteredFlavors.map(cookie => {
-                const selectedItem = currentPackItems.find(item => item.id === cookie.id);
-                const quantity = selectedItem ? selectedItem.quantity : 0;
-                const canAddMore = getTotalSelectedInPack() < currentPack.size;
-                
+          {/* Pack Selection Section */}
+          <section id="packSelection" className="pack-selection">
+            <h2>Choose Your Perfect Pack</h2>
+            <p className="subtitle">Select the size that's just right for you and your loved ones</p>
+            
+            <div className="pack-options">
+              {packOptions.map(pack => {
+                const savings = calculateSavings(pack.size, pack.price);
                 return (
-                  <div key={cookie.id} className="cookie-flavor-item">
-                    <div className="cookie-info">
-                      <div className="cookie-name">{cookie.name}</div>
-                      <div className="cookie-details">
-                        {cookie.calories}
-                        {cookie.surcharge && ` / ${cookie.surcharge}`}
-                      </div>
-                      <div className="cookie-category">
-                        {cookie.category.charAt(0).toUpperCase() + cookie.category.slice(1)}
-                      </div>
-                    </div>
-                    <div className="cookie-quantity">
-                      <button 
-                        className="quantity-btn" 
-                        onClick={() => updateCookieQuantity(cookie.id, -1)}
-                        disabled={quantity <= 0}
-                      >
-                        -
-                      </button>
-                      <span className="quantity-display">{quantity}</span>
-                      <button 
-                        className="quantity-btn" 
-                        onClick={() => updateCookieQuantity(cookie.id, 1)}
-                        disabled={!canAddMore}
-                      >
-                        +
-                      </button>
-                    </div>
+                  <div 
+                    key={pack.id}
+                    className={`pack-option ${currentPack?.id === pack.id ? 'selected' : ''}`}
+                    onClick={() => selectPack(pack)}
+                  >
+                    <span className="pack-icon">📦</span>
+                    <h3>{pack.name}</h3>
+                    <div className="pack-price">${pack.price.toFixed(2)}</div>
+                    {savings > 0 && (
+                      <div className="pack-savings">Save {savings}%</div>
+                    )}
                   </div>
                 );
               })}
             </div>
-            <div className="pack-actions">
-              <button 
-                className="add-to-bag-btn" 
-                onClick={addPackToBag}
-                disabled={getTotalSelectedInPack() !== currentPack.size}
-              >
-                {getTotalSelectedInPack() === currentPack.size ? 'Add to Bag' : `Select ${currentPack.size - getTotalSelectedInPack()} more`}
-              </button>
-            </div>
-          </div>
-        </section>
-      )}
+          </section>
 
-      {/* Footer */}
+          {/* Cookie Selection Section */}
+          {currentPack && (
+            <section className="cookie-selection">
+              <h2>Customize Your {currentPack.name}</h2>
+              
+              <div className="selection-info">
+                <p>Select {currentPack.size} cookies for your pack. You can choose multiple of the same flavor!</p>
+              </div>
+
+              {/* Enhanced Search and Filter */}
+              <div className="search-filter-container">
+                <div className="search-box">
+                  <input 
+                    type="text" 
+                    placeholder="Search cookie flavors..." 
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                  />
+                </div>
+                <div className="filter-options">
+                  <select 
+                    value={categoryFilter} 
+                    onChange={(e) => setCategoryFilter(e.target.value)}
+                  >
+                    <option value="">All Categories</option>
+                    {getCategories().map(category => (
+                      <option key={category} value={category}>{category}</option>
+                    ))}
+                  </select>
+                  <button className="clear-filters" onClick={clearFilters}>
+                    Clear Filters
+                  </button>
+                </div>
+              </div>
+
+              {/* Cookie Flavors Grid */}
+              <div className="cookie-flavors">
+                {filteredFlavors.map(cookie => {
+                  const selectedItem = currentPackItems.find(item => item.id === cookie.id);
+                  const quantity = selectedItem ? selectedItem.quantity : 0;
+                  const totalSelected = getTotalSelectedInPack();
+                  const canAddMore = totalSelected < currentPack.size;
+                  
+                  return (
+                    <div key={cookie.id} className="cookie-flavor-item">
+                      <div className="cookie-flavor-info">
+                        <h4>{cookie.name}</h4>
+                        <p>{cookie.description}</p>
+                        <small>Category: {cookie.category}</small>
+                      </div>
+                      <div className="cookie-quantity">
+                        <button 
+                          className="quantity-btn" 
+                          onClick={() => updateCookieQuantity(cookie.id, -1)}
+                          disabled={quantity <= 0}
+                        >
+                          −
+                        </button>
+                        <span className="quantity-display">{quantity}</span>
+                        <button 
+                          className="quantity-btn" 
+                          onClick={() => updateCookieQuantity(cookie.id, 1)}
+                          disabled={!canAddMore}
+                        >
+                          +
+                        </button>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* Pack Actions */}
+              <div className="pack-actions">
+                <button 
+                  className="add-to-bag-btn"
+                  onClick={addPackToBag}
+                  disabled={getTotalSelectedInPack() !== currentPack.size}
+                >
+                  {getTotalSelectedInPack() === currentPack.size ? (
+                    <>
+                      🛒 Add to Bag - ${currentPack.price.toFixed(2)}
+                    </>
+                  ) : (
+                    <>
+                      Select {currentPack.size - getTotalSelectedInPack()} more cookies
+                    </>
+                  )}
+                </button>
+                <button 
+                  className="cta-button" 
+                  onClick={backToPackSelection}
+                  style={{ marginTop: '1rem', background: 'transparent', border: '2px solid var(--primary-brown)', color: 'var(--primary-brown)' }}
+                >
+                  ← Back to Pack Selection
+                </button>
+              </div>
+            </section>
+          )}
+
+          {/* About Section */}
+          <section id="about" className="about-section" style={{ marginTop: '4rem', padding: '3rem', background: 'white', borderRadius: 'var(--radius-lg)', boxShadow: 'var(--shadow-card)' }}>
+            <h2 style={{ textAlign: 'center', fontSize: '2.5rem', color: 'var(--primary-brown)', marginBottom: '2rem' }}>About Happily Ever Bakers</h2>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
+              <div style={{ textAlign: 'center' }}>
+                <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>👨‍🍳</div>
+                <h3 style={{ color: 'var(--primary-brown)', marginBottom: '1rem' }}>Artisan Crafted</h3>
+                <p style={{ color: 'var(--text-light)', lineHeight: '1.6' }}>Every cookie is handcrafted using traditional techniques and the finest ingredients.</p>
+              </div>
+              <div style={{ textAlign: 'center' }}>
+                <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>🌱</div>
+                <h3 style={{ color: 'var(--primary-brown)', marginBottom: '1rem' }}>Fresh Daily</h3>
+                <p style={{ color: 'var(--text-light)', lineHeight: '1.6' }}>Baked fresh every morning to ensure the perfect texture and flavor in every bite.</p>
+              </div>
+              <div style={{ textAlign: 'center' }}>
+                <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>🚚</div>
+                <h3 style={{ color: 'var(--primary-brown)', marginBottom: '1rem' }}>Fast Delivery</h3>
+                <p style={{ color: 'var(--text-light)', lineHeight: '1.6' }}>Delivered to your door within 24-48 hours, maintaining freshness and quality.</p>
+              </div>
+            </div>
+          </section>
+        </div>
+      </main>
+
+      {/* Enhanced Footer */}
       <footer className="footer">
         <div className="container">
           <div className="footer-content">
@@ -278,8 +315,8 @@ export default function HomePage() {
             </div>
             <div className="footer-section">
               <h4>Contact Info</h4>
-              <p>📞 (555) 123-BAKE</p>
-              <p>📧 hello@happilyeverbakers.com</p>
+              <p>�� (555) 123-BAKE</p>
+              <p>✉️ hello@happilyeverbakers.com</p>
               <p>📍 123 Sweet Street, Cookie City, CC 12345</p>
             </div>
             <div className="footer-section">
@@ -290,7 +327,7 @@ export default function HomePage() {
             </div>
           </div>
           <div className="footer-bottom">
-            <p>&copy; 2024 Happily Ever Bakers. All rights reserved.</p>
+            <p>© 2024 Happily Ever Bakers. All rights reserved.</p>
           </div>
         </div>
       </footer>
