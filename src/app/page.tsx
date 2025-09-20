@@ -5,6 +5,7 @@ import { cookieFlavors, packOptions, calculateSavings } from '@/lib/data';
 import { useCart } from '@/lib/cart-context';
 import { PackOption, SelectedCookie } from '@/types';
 import CartSidebar from '@/components/CartSidebar';
+import Image from 'next/image';
 
 export default function HomePage() {
   const { state, dispatch, addToCart } = useCart();
@@ -117,11 +118,17 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen">
-      {/* Enhanced Header */}
+      {/* HEB Branded Header */}
       <header className="header">
         <div className="container">
           <div className="logo">
-            <span className="logo-icon">🍪</span>
+            <Image 
+              src="/assets/logos/HEB-White-Logo@4x.png" 
+              alt="Happily Ever Bakers Logo" 
+              width={50} 
+              height={50}
+              priority
+            />
             <h1>Happily Ever Bakers</h1>
           </div>
           <nav className="nav">
@@ -136,7 +143,7 @@ export default function HomePage() {
         </div>
       </header>
 
-      {/* Enhanced Hero Section */}
+      {/* HEB Hero Section */}
       <section className="hero" id="home">
         <div className="container">
           <div className="hero-content">
@@ -152,7 +159,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Enhanced Main Content */}
+      {/* Main Content */}
       <main className="main-content">
         <div className="container">
           {/* Pack Selection Section */}
@@ -190,7 +197,7 @@ export default function HomePage() {
                 <p>Select {currentPack.size} cookies for your pack. You can choose multiple of the same flavor!</p>
               </div>
 
-              {/* Enhanced Search and Filter */}
+              {/* Search and Filter */}
               <div className="search-filter-container">
                 <div className="search-box">
                   <input 
@@ -273,7 +280,7 @@ export default function HomePage() {
                 <button 
                   className="cta-button" 
                   onClick={backToPackSelection}
-                  style={{ marginTop: '1rem', background: 'transparent', border: '2px solid var(--primary-brown)', color: 'var(--primary-brown)' }}
+                  style={{ marginTop: '1rem', background: 'transparent', border: '2px solid var(--heb-pink)', color: 'var(--heb-pink)' }}
                 >
                   ← Back to Pack Selection
                 </button>
@@ -282,30 +289,30 @@ export default function HomePage() {
           )}
 
           {/* About Section */}
-          <section id="about" className="about-section" style={{ marginTop: '4rem', padding: '3rem', background: 'white', borderRadius: 'var(--radius-lg)', boxShadow: 'var(--shadow-card)' }}>
-            <h2 style={{ textAlign: 'center', fontSize: '2.5rem', color: 'var(--primary-brown)', marginBottom: '2rem' }}>About Happily Ever Bakers</h2>
+          <section id="about" className="about-section" style={{ marginTop: '4rem', padding: '3rem', background: 'var(--bg-primary)', borderRadius: 'var(--radius-lg)', boxShadow: 'var(--shadow-light)' }}>
+            <h2 style={{ textAlign: 'center', fontSize: '2.5rem', color: 'var(--heb-pink)', marginBottom: '2rem' }}>About Happily Ever Bakers</h2>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
               <div style={{ textAlign: 'center' }}>
                 <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>👨‍🍳</div>
-                <h3 style={{ color: 'var(--primary-brown)', marginBottom: '1rem' }}>Artisan Crafted</h3>
-                <p style={{ color: 'var(--text-light)', lineHeight: '1.6' }}>Every cookie is handcrafted using traditional techniques and the finest ingredients.</p>
+                <h3 style={{ color: 'var(--heb-pink)', marginBottom: '1rem' }}>Artisan Crafted</h3>
+                <p style={{ color: 'var(--text-secondary)', lineHeight: '1.6' }}>Every cookie is handcrafted using traditional techniques and the finest ingredients.</p>
               </div>
               <div style={{ textAlign: 'center' }}>
                 <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>🌱</div>
-                <h3 style={{ color: 'var(--primary-brown)', marginBottom: '1rem' }}>Fresh Daily</h3>
-                <p style={{ color: 'var(--text-light)', lineHeight: '1.6' }}>Baked fresh every morning to ensure the perfect texture and flavor in every bite.</p>
+                <h3 style={{ color: 'var(--heb-pink)', marginBottom: '1rem' }}>Fresh Daily</h3>
+                <p style={{ color: 'var(--text-secondary)', lineHeight: '1.6' }}>Baked fresh every morning to ensure the perfect texture and flavor in every bite.</p>
               </div>
               <div style={{ textAlign: 'center' }}>
                 <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>🚚</div>
-                <h3 style={{ color: 'var(--primary-brown)', marginBottom: '1rem' }}>Fast Delivery</h3>
-                <p style={{ color: 'var(--text-light)', lineHeight: '1.6' }}>Delivered to your door within 24-48 hours, maintaining freshness and quality.</p>
+                <h3 style={{ color: 'var(--heb-pink)', marginBottom: '1rem' }}>Fast Delivery</h3>
+                <p style={{ color: 'var(--text-secondary)', lineHeight: '1.6' }}>Delivered to your door within 24-48 hours, maintaining freshness and quality.</p>
               </div>
             </div>
           </section>
         </div>
       </main>
 
-      {/* Enhanced Footer */}
+      {/* HEB Footer */}
       <footer className="footer">
         <div className="container">
           <div className="footer-content">
@@ -315,7 +322,7 @@ export default function HomePage() {
             </div>
             <div className="footer-section">
               <h4>Contact Info</h4>
-              <p>�� (555) 123-BAKE</p>
+              <p>📞 (555) 123-BAKE</p>
               <p>✉️ hello@happilyeverbakers.com</p>
               <p>📍 123 Sweet Street, Cookie City, CC 12345</p>
             </div>
