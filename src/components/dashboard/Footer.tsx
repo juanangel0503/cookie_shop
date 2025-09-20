@@ -18,7 +18,8 @@ export default function Footer() {
                 <a href="/nutrition" className="nav-link">Nutrition & Allergy</a>
                 <a href="/support" className="nav-link">Support</a>
                 <a href="/gift-card-balance" className="nav-link">Gift Card Balance</a>
-                <a href="/flavors-map" className="nav-link">Flavors Map</a>
+                <a href="/flavors" className="nav-link">Flavors</a>
+                <a href="/map" className="nav-link">Map</a>
               </div>
             </div>
             
@@ -80,14 +81,14 @@ export default function Footer() {
             <Image 
               src="/assets/logos/HEB-Pink-Logo@4x.png" 
               alt="Happily Ever Bakers" 
-              width={150} 
-              height={50}
+              width={180} 
+              height={60}
               className="logo"
             />
           </div>
           
           <div className="footer-legal">
-            <p className="copyright">© 2024 all rights reserved.</p>
+            <p className="copyright">©2024 all rights reserved.</p>
             <div className="legal-links">
               <a href="/privacy" className="legal-link">Privacy policy</a>
               <span className="separator">|</span>
@@ -103,27 +104,28 @@ export default function Footer() {
         .dashboard-footer {
           background: #F8BBD9;
           color: #2c2c2c;
-          padding: 3rem 0 2rem;
+          padding: 4rem 0 2rem;
+          margin-top: 0;
         }
 
         .footer-container {
-          max-width: 1200px;
+          max-width: 1400px;
           margin: 0 auto;
-          padding: 0 2rem;
+          padding: 0 3rem;
         }
 
         .footer-upper {
           display: flex;
           justify-content: space-between;
           align-items: flex-start;
-          margin-bottom: 3rem;
-          padding-bottom: 2rem;
-          border-bottom: 1px solid rgba(44, 44, 44, 0.1);
+          margin-bottom: 4rem;
+          padding-bottom: 3rem;
+          border-bottom: 2px solid rgba(44, 44, 44, 0.1);
         }
 
         .footer-nav {
           display: flex;
-          gap: 4rem;
+          gap: 6rem;
         }
 
         .nav-section {
@@ -132,51 +134,56 @@ export default function Footer() {
         }
 
         .nav-title {
-          font-size: 1rem;
+          font-size: 1.1rem;
           font-weight: 700;
-          margin-bottom: 1rem;
+          margin-bottom: 1.5rem;
           color: #2c2c2c;
+          letter-spacing: 0.5px;
         }
 
         .nav-links {
           display: flex;
           flex-direction: column;
-          gap: 0.5rem;
+          gap: 0.75rem;
         }
 
         .nav-link {
           color: #2c2c2c;
           text-decoration: none;
-          font-size: 0.9rem;
-          transition: color 0.3s ease;
+          font-size: 1rem;
+          transition: all 0.3s ease;
+          padding: 0.25rem 0;
         }
 
         .nav-link:hover {
           color: #E91E63;
+          transform: translateX(5px);
         }
 
         .social-media {
           display: flex;
-          gap: 1rem;
+          gap: 1.5rem;
           align-items: center;
         }
 
         .social-link {
           color: #2c2c2c;
-          transition: color 0.3s ease, transform 0.3s ease;
+          transition: all 0.3s ease;
           display: flex;
           align-items: center;
           justify-content: center;
-          width: 40px;
-          height: 40px;
+          width: 45px;
+          height: 45px;
           border-radius: 50%;
           background: rgba(255, 255, 255, 0.1);
+          backdrop-filter: blur(10px);
         }
 
         .social-link:hover {
           color: #E91E63;
-          transform: translateY(-2px);
+          transform: translateY(-3px);
           background: rgba(255, 255, 255, 0.2);
+          box-shadow: 0 8px 25px rgba(233, 30, 99, 0.2);
         }
 
         .footer-lower {
@@ -191,34 +198,37 @@ export default function Footer() {
         }
 
         .logo {
-          height: 50px;
+          height: 60px;
           width: auto;
+          filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.1));
         }
 
         .footer-legal {
           display: flex;
           flex-direction: column;
           align-items: flex-end;
-          gap: 0.5rem;
+          gap: 0.75rem;
         }
 
         .copyright {
-          font-size: 0.9rem;
+          font-size: 1rem;
           color: #2c2c2c;
           margin: 0;
+          font-weight: 500;
         }
 
         .legal-links {
           display: flex;
           align-items: center;
-          gap: 0.5rem;
+          gap: 0.75rem;
         }
 
         .legal-link {
           color: #2c2c2c;
           text-decoration: none;
-          font-size: 0.9rem;
-          transition: color 0.3s ease;
+          font-size: 1rem;
+          transition: all 0.3s ease;
+          padding: 0.25rem 0;
         }
 
         .legal-link:hover {
@@ -227,39 +237,51 @@ export default function Footer() {
 
         .separator {
           color: #2c2c2c;
-          font-size: 0.9rem;
+          font-size: 1rem;
+          font-weight: 300;
+        }
+
+        @media (max-width: 1024px) {
+          .footer-container {
+            padding: 0 2rem;
+          }
+
+          .footer-nav {
+            gap: 4rem;
+          }
         }
 
         @media (max-width: 768px) {
           .footer-container {
-            padding: 0 1rem;
+            padding: 0 1.5rem;
           }
 
           .footer-upper {
             flex-direction: column;
-            gap: 2rem;
-            margin-bottom: 2rem;
+            gap: 3rem;
+            margin-bottom: 3rem;
           }
 
           .footer-nav {
             flex-direction: column;
-            gap: 2rem;
+            gap: 3rem;
           }
 
           .nav-links {
             flex-direction: row;
             flex-wrap: wrap;
-            gap: 1rem;
+            gap: 1.5rem;
           }
 
           .social-media {
             justify-content: center;
             flex-wrap: wrap;
+            gap: 1rem;
           }
 
           .footer-lower {
             flex-direction: column;
-            gap: 1.5rem;
+            gap: 2rem;
             text-align: center;
           }
 
@@ -270,13 +292,22 @@ export default function Footer() {
           .legal-links {
             flex-wrap: wrap;
             justify-content: center;
+            gap: 1rem;
+          }
+
+          .logo {
+            height: 50px;
           }
         }
 
         @media (max-width: 480px) {
+          .footer-container {
+            padding: 0 1rem;
+          }
+
           .nav-links {
             flex-direction: column;
-            gap: 0.5rem;
+            gap: 0.75rem;
           }
 
           .legal-links {
@@ -286,6 +317,10 @@ export default function Footer() {
 
           .separator {
             display: none;
+          }
+
+          .logo {
+            height: 45px;
           }
         }
       `}</style>

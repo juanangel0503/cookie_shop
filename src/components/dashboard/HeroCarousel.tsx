@@ -137,9 +137,10 @@ export default function HeroCarousel() {
           position: relative;
           width: 100%;
           height: 100vh;
-          min-height: 600px;
+          min-height: 700px;
           background: #f8f9fa;
           overflow: hidden;
+          margin-top: 80px;
         }
 
         .carousel-container {
@@ -159,20 +160,21 @@ export default function HeroCarousel() {
         .slide-content {
           display: grid;
           grid-template-columns: 1fr 1fr;
-          gap: 4rem;
-          max-width: 1200px;
+          gap: 5rem;
+          max-width: 1400px;
           width: 100%;
-          padding: 0 2rem;
+          padding: 0 3rem;
           align-items: center;
         }
 
         .slide-image {
           position: relative;
           width: 100%;
-          height: 500px;
-          border-radius: 20px;
+          height: 600px;
+          border-radius: 25px;
           overflow: hidden;
-          box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+          box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+          background: white;
         }
 
         .carousel-image {
@@ -189,25 +191,25 @@ export default function HeroCarousel() {
         }
 
         .slide-title {
-          font-size: 3.5rem;
+          font-size: 4rem;
           font-weight: 800;
           color: #2c2c2c;
-          margin-bottom: 1.5rem;
+          margin-bottom: 2rem;
           line-height: 1.1;
           letter-spacing: -0.02em;
         }
 
         .slide-description {
-          font-size: 1.2rem;
+          font-size: 1.3rem;
           color: #666;
-          line-height: 1.6;
-          margin-bottom: 2.5rem;
-          max-width: 500px;
+          line-height: 1.7;
+          margin-bottom: 3rem;
+          max-width: 550px;
         }
 
         .slide-actions {
           display: flex;
-          gap: 1.5rem;
+          gap: 2rem;
           align-items: center;
         }
 
@@ -215,54 +217,58 @@ export default function HeroCarousel() {
           background: transparent;
           border: 2px solid #E91E63;
           color: #E91E63;
-          padding: 12px 24px;
-          border-radius: 25px;
-          font-size: 1rem;
+          padding: 16px 32px;
+          border-radius: 30px;
+          font-size: 1.1rem;
           font-weight: 600;
           cursor: pointer;
           transition: all 0.3s ease;
+          letter-spacing: 0.5px;
         }
 
         .learn-more-btn:hover {
           background: #E91E63;
           color: white;
-          transform: translateY(-2px);
+          transform: translateY(-3px);
+          box-shadow: 0 8px 25px rgba(233, 30, 99, 0.3);
         }
 
         .order-now-btn {
           background: #E91E63;
           border: none;
           color: white;
-          padding: 12px 24px;
-          border-radius: 25px;
-          font-size: 1rem;
+          padding: 16px 32px;
+          border-radius: 30px;
+          font-size: 1.1rem;
           font-weight: 600;
           cursor: pointer;
           transition: all 0.3s ease;
+          letter-spacing: 0.5px;
+          box-shadow: 0 4px 15px rgba(233, 30, 99, 0.3);
         }
 
         .order-now-btn:hover {
           background: #C2185B;
-          transform: translateY(-2px);
-          box-shadow: 0 8px 25px rgba(233, 30, 99, 0.3);
+          transform: translateY(-3px);
+          box-shadow: 0 8px 25px rgba(233, 30, 99, 0.4);
         }
 
         .carousel-arrow {
           position: absolute;
           top: 50%;
           transform: translateY(-50%);
-          background: rgba(255, 255, 255, 0.9);
+          background: rgba(255, 255, 255, 0.95);
           border: none;
-          width: 50px;
-          height: 50px;
+          width: 60px;
+          height: 60px;
           border-radius: 50%;
           display: flex;
           align-items: center;
           justify-content: center;
           cursor: pointer;
-          font-size: 1.5rem;
+          font-size: 1.8rem;
           color: #E91E63;
-          box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+          box-shadow: 0 8px 25px rgba(0,0,0,0.15);
           transition: all 0.3s ease;
           z-index: 10;
         }
@@ -270,61 +276,62 @@ export default function HeroCarousel() {
         .carousel-arrow:hover {
           background: white;
           transform: translateY(-50%) scale(1.1);
-          box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+          box-shadow: 0 12px 35px rgba(0,0,0,0.2);
         }
 
         .carousel-arrow-left {
-          left: 2rem;
+          left: 3rem;
         }
 
         .carousel-arrow-right {
-          right: 2rem;
+          right: 3rem;
         }
 
         .carousel-indicators {
           position: absolute;
-          bottom: 2rem;
+          bottom: 3rem;
           left: 50%;
           transform: translateX(-50%);
           display: flex;
-          gap: 0.5rem;
+          gap: 0.75rem;
           z-index: 10;
         }
 
         .indicator {
-          width: 12px;
-          height: 12px;
+          width: 14px;
+          height: 14px;
           border-radius: 50%;
           border: none;
-          background: rgba(255, 255, 255, 0.5);
+          background: rgba(255, 255, 255, 0.6);
           cursor: pointer;
           transition: all 0.3s ease;
         }
 
         .indicator.active {
           background: #E91E63;
-          transform: scale(1.2);
+          transform: scale(1.3);
         }
 
         .indicator:hover {
-          background: rgba(233, 30, 99, 0.7);
+          background: rgba(233, 30, 99, 0.8);
+          transform: scale(1.2);
         }
 
         .autoplay-toggle {
           position: absolute;
-          bottom: 2rem;
-          right: 2rem;
-          background: rgba(0, 0, 0, 0.7);
+          bottom: 3rem;
+          right: 3rem;
+          background: rgba(0, 0, 0, 0.8);
           border: none;
           color: white;
-          width: 40px;
-          height: 40px;
+          width: 45px;
+          height: 45px;
           border-radius: 50%;
           display: flex;
           align-items: center;
           justify-content: center;
           cursor: pointer;
-          font-size: 1rem;
+          font-size: 1.1rem;
           transition: all 0.3s ease;
           z-index: 10;
         }
@@ -336,23 +343,57 @@ export default function HeroCarousel() {
 
         .week-label {
           position: absolute;
-          top: 2rem;
-          left: 2rem;
+          top: 3rem;
+          left: 3rem;
           background: #E91E63;
           color: white;
-          padding: 8px 16px;
-          border-radius: 20px;
-          font-size: 0.9rem;
+          padding: 12px 20px;
+          border-radius: 25px;
+          font-size: 1rem;
           font-weight: 600;
           z-index: 10;
+          box-shadow: 0 4px 15px rgba(233, 30, 99, 0.3);
+        }
+
+        @media (max-width: 1024px) {
+          .slide-content {
+            gap: 3rem;
+            padding: 0 2rem;
+          }
+
+          .slide-image {
+            height: 500px;
+          }
+
+          .slide-title {
+            font-size: 3rem;
+          }
+
+          .slide-description {
+            font-size: 1.1rem;
+          }
         }
 
         @media (max-width: 768px) {
+          .hero-carousel {
+            min-height: 600px;
+          }
+
           .slide-content {
             grid-template-columns: 1fr;
             gap: 2rem;
-            padding: 0 1rem;
+            padding: 0 1.5rem;
             text-align: center;
+          }
+
+          .slide-image {
+            height: 400px;
+            order: 1;
+          }
+
+          .slide-info {
+            order: 2;
+            padding: 1rem 0;
           }
 
           .slide-title {
@@ -361,17 +402,56 @@ export default function HeroCarousel() {
 
           .slide-description {
             font-size: 1rem;
+            margin-bottom: 2rem;
           }
 
           .slide-actions {
             justify-content: center;
             flex-wrap: wrap;
+            gap: 1rem;
           }
 
           .carousel-arrow {
-            width: 40px;
-            height: 40px;
-            font-size: 1.2rem;
+            width: 50px;
+            height: 50px;
+            font-size: 1.5rem;
+          }
+
+          .carousel-arrow-left {
+            left: 1.5rem;
+          }
+
+          .carousel-arrow-right {
+            right: 1.5rem;
+          }
+
+          .week-label {
+            top: 1.5rem;
+            left: 1.5rem;
+            font-size: 0.9rem;
+            padding: 10px 16px;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .slide-title {
+            font-size: 2rem;
+          }
+
+          .slide-description {
+            font-size: 0.95rem;
+          }
+
+          .learn-more-btn,
+          .order-now-btn {
+            padding: 14px 28px;
+            font-size: 1rem;
+          }
+
+          .carousel-arrow {
+            width: 45px;
+            height: 45px;
+            font-size: 1.3rem;
           }
 
           .carousel-arrow-left {
@@ -380,13 +460,6 @@ export default function HeroCarousel() {
 
           .carousel-arrow-right {
             right: 1rem;
-          }
-
-          .week-label {
-            top: 1rem;
-            left: 1rem;
-            font-size: 0.8rem;
-            padding: 6px 12px;
           }
         }
       `}</style>
