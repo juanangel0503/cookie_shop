@@ -60,6 +60,7 @@ export default function FeaturedCookies() {
                   alt={cookie.name}
                   fill
                   className="cookie-img"
+                  style={{ objectFit: 'cover' }}
                 />
               </div>
               
@@ -140,7 +141,7 @@ export default function FeaturedCookies() {
         }
 
         .cookie-img {
-          object-fit: cover;
+          object-fit: cover !important;
           transition: transform 0.3s ease;
         }
 
@@ -342,6 +343,7 @@ export default function FeaturedCookies() {
           .order-now-btn {
             padding: 14px 28px;
             font-size: 1rem;
+            min-width: 120px;
           }
         }
       `}</style>

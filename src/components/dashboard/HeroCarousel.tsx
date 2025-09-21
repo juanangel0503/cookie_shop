@@ -91,6 +91,7 @@ export default function HeroCarousel() {
                   fill
                   className="product-image"
                   priority={currentIndex === 0}
+                  style={{ objectFit: 'cover' }}
                 />
                 {/* Product Shadow */}
                 <div className="product-shadow"></div>
@@ -149,7 +150,7 @@ export default function HeroCarousel() {
           width: 100%;
           height: 100vh;
           min-height: 800px;
-          background: linear-gradient(135deg, #FF6B35 0%, #F7931E 100%);
+          background: linear-gradient(135deg, #E91E63 0%, #C2185B 100%);
           overflow: hidden;
           margin-top: 80px;
           display: flex;
@@ -207,7 +208,7 @@ export default function HeroCarousel() {
         }
 
         .product-image {
-          object-fit: cover;
+          object-fit: cover !important;
           transition: transform 0.3s ease;
         }
 
@@ -279,7 +280,7 @@ export default function HeroCarousel() {
           align-items: center;
           justify-content: center;
           cursor: pointer;
-          color: #FF6B35;
+          color: #E91E63;
           box-shadow: 0 8px 25px rgba(0,0,0,0.15);
           transition: all 0.3s ease;
           z-index: 10;
