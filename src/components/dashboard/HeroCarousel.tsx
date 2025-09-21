@@ -93,8 +93,6 @@ export default function HeroCarousel() {
                   priority={currentIndex === 0}
                   style={{ objectFit: 'cover' }}
                 />
-                {/* Product Shadow */}
-                <div className="product-shadow"></div>
               </div>
             </div>
 
@@ -142,6 +140,11 @@ export default function HeroCarousel() {
             </svg>
           )}
         </button>
+
+        {/* Week Label */}
+        <div className="week-label">
+          Week of Sep 16 - 21
+        </div>
       </div>
 
       <style jsx>{`
@@ -210,18 +213,6 @@ export default function HeroCarousel() {
         .product-image {
           object-fit: cover !important;
           transition: transform 0.3s ease;
-        }
-
-        .product-shadow {
-          position: absolute;
-          bottom: -20px;
-          left: 50%;
-          transform: translateX(-50%);
-          width: 80%;
-          height: 40px;
-          background: radial-gradient(ellipse, rgba(0,0,0,0.3) 0%, transparent 70%);
-          border-radius: 50%;
-          filter: blur(10px);
         }
 
         .product-info {
@@ -302,7 +293,7 @@ export default function HeroCarousel() {
 
         .carousel-indicators {
           position: absolute;
-          bottom: 3rem;
+          bottom: 8rem;
           left: 50%;
           transform: translateX(-50%);
           display: flex;
@@ -333,7 +324,7 @@ export default function HeroCarousel() {
 
         .autoplay-toggle {
           position: absolute;
-          bottom: 3rem;
+          bottom: 8rem;
           right: 3rem;
           background: rgba(0, 0, 0, 0.7);
           border: none;
@@ -353,6 +344,21 @@ export default function HeroCarousel() {
         .autoplay-toggle:hover {
           background: rgba(0, 0, 0, 0.9);
           transform: scale(1.1);
+        }
+
+        .week-label {
+          position: absolute;
+          bottom: 3rem;
+          left: 50%;
+          transform: translateX(-50%);
+          background: #E91E63;
+          color: white;
+          padding: 12px 20px;
+          border-radius: 25px;
+          font-size: 1rem;
+          font-weight: 600;
+          z-index: 10;
+          box-shadow: 0 4px 15px rgba(233, 30, 99, 0.3);
         }
 
         @media (max-width: 1024px) {
@@ -414,6 +420,12 @@ export default function HeroCarousel() {
 
           .carousel-arrow-right {
             right: 1.5rem;
+          }
+
+          .week-label {
+            bottom: 1.5rem;
+            font-size: 0.9rem;
+            padding: 10px 16px;
           }
         }
 
