@@ -154,7 +154,7 @@ export default function HeroCarousel() {
           width: 100%;
           height: 100vh;
           min-height: 800px;
-          background: linear-gradient(135deg, #E91E63 0%, #C2185B 100%);
+          background: #F8BBD9;
           overflow: hidden;
           margin-top: 80px;
           display: flex;
@@ -227,7 +227,7 @@ export default function HeroCarousel() {
           margin-bottom: 1.5rem;
           line-height: 1.1;
           letter-spacing: -0.02em;
-          text-shadow: 0 4px 8px rgba(0,0,0,0.3);
+          text-shadow: none;
         }
 
         .product-description {
@@ -235,7 +235,7 @@ export default function HeroCarousel() {
           line-height: 1.6;
           margin-bottom: 2.5rem;
           opacity: 0.95;
-          text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+          text-shadow: none;
         }
 
         .order-now-btn {
