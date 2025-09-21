@@ -1,17 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 
 :root {
-  /* HEB Brand Colors */
+  /* HEB Brand Colors - Pink and White Only */
   --primary-pink: #E91E63; /* Happily Ever Bakers Pink */
   --primary-pink-light: #F8BBD9;
   --primary-pink-dark: #C2185B;
-  --secondary-gold: #FFD700; /* Gold accent */
-  --secondary-gold-light: #FFECB3;
 
-  /* Gradients */
+  /* Gradients - Pink Only */
   --gradient-primary: linear-gradient(135deg, var(--primary-pink), var(--primary-pink-dark));
-  --gradient-gold: linear-gradient(135deg, var(--secondary-gold), #FFC107);
-  --gradient-cream: linear-gradient(135deg, #FFF8E1, #FFECB3); /* Light cream to light gold */
   --gradient-rose: linear-gradient(135deg, #FCE4EC, #F8BBD9); /* Light pink/rose */
 
   /* Text Colors */
@@ -284,8 +280,8 @@ body {
 }
 
 .pack-savings {
-  background: var(--gradient-gold);
-  color: var(--text-dark);
+  background: var(--gradient-primary);
+  color: var(--text-white);
   padding: 0.5rem 1rem;
   border-radius: var(--radius-full);
   font-weight: 600;
@@ -409,8 +405,8 @@ body {
 }
 
 .cookie-surcharge {
-  background: var(--gradient-gold);
-  color: var(--text-dark);
+  background: var(--gradient-primary);
+  color: var(--text-white);
   padding: 0.25rem 0.75rem;
   border-radius: var(--radius-sm);
   font-size: 0.8rem;
