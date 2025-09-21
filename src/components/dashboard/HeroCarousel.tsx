@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 interface CarouselItem {
   id: string;
@@ -100,7 +101,7 @@ export default function HeroCarousel() {
             <div className="product-info">
               <h1 className="product-title">{carouselItems[currentIndex].title}</h1>
               <p className="product-description">{carouselItems[currentIndex].description}</p>
-              <button className="order-now-btn">{carouselItems[currentIndex].ctaText}</button>
+              <Link href="/"><button className="order-now-btn">{carouselItems[currentIndex].ctaText}</button></Link>
             </div>
           </div>
         </div>

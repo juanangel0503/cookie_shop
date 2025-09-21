@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -41,7 +42,7 @@ export default function Header() {
           </div>
           
           <div className="header-right">
-            <button className="order-now-header-btn">Order Now</button>
+            <Link href="/"><button className="order-now-header-btn">Order Now</button></Link>
           </div>
         </div>
       </header>
@@ -57,8 +58,9 @@ export default function Header() {
           </div>
           
           <nav className="menu-nav">
-            <a href="/" className="menu-link">Home</a>
-            <a href="/order" className="menu-link">Order</a>
+            <Link href="/" className="menu-link" onClick={toggleMenu}>Shop</Link>
+            <Link href="/" className="menu-link" onClick={toggleMenu}>Order</Link>
+                <Link href="/dashboard" className="menu-link" onClick={toggleMenu}>Dashboard</Link>
             <a href="/locations" className="menu-link">Locations</a>
             <a href="/catering" className="menu-link">Catering</a>
             <a href="/gift-cards" className="menu-link">Gift Cards</a>

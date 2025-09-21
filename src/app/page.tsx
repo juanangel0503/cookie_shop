@@ -8,7 +8,7 @@ import CartSidebar from '@/components/CartSidebar';
 import Image from 'next/image';
 import Link from 'next/link';
 
-export default function HomePage() {
+export default function ShopPage() {
   const { state, dispatch, addToCart } = useCart();
   const [currentPack, setCurrentPack] = useState<PackOption | null>(null);
   const [currentPackItems, setCurrentPackItems] = useState<SelectedCookie[]>([]);
@@ -136,7 +136,7 @@ export default function HomePage() {
             <a href="#home">Home</a>
             <a href="#cookies">Cookies</a>
             <a href="#about">About</a>
-            <Link href="/dashboard" className="dashboard-link">Dashboard</Link>
+            <Link href="/dashboard" className="nav-link">Dashboard</Link>
           </nav>
           <div className="cart-icon" onClick={() => setIsCartOpen(true)}>
             <span className="cart-count">{state.items.reduce((sum, item) => sum + item.quantity, 0)}</span>
