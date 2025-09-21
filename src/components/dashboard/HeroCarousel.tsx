@@ -101,7 +101,10 @@ export default function HeroCarousel() {
             <div className="product-info">
               <h1 className="product-title">{carouselItems[currentIndex].title}</h1>
               <p className="product-description">{carouselItems[currentIndex].description}</p>
-              <Link href="/"><button className="order-now-btn">{carouselItems[currentIndex].ctaText}</button></Link>
+              <div className="product-actions">
+                <div className="week-label">Week of Sep 16 - 21</div>|
+                <Link href="/dashboard"><button className="order-now-btn">{carouselItems[currentIndex].ctaText}</button></Link>|
+              </div>|
             </div>
           </div>
         </div>
@@ -142,10 +145,6 @@ export default function HeroCarousel() {
           )}
         </button>
 
-        {/* Week Label */}
-        <div className="week-label">
-          Week of Sep 16 - 21
-        </div>
       </div>
 
       <style jsx>{`
@@ -158,8 +157,19 @@ export default function HeroCarousel() {
           overflow: hidden;
           margin-top: 80px;
           display: flex;
+          align-items: center;|
+          gap: 1.5rem;|
+          justify-content: center;|
+          margin-top: 1rem;|
+        }|
           align-items: center;
+          gap: 1.5rem;|
+          justify-content: center;|
+          margin-top: 1rem;|
+        }|
           justify-content: center;
+          margin-top: 1rem;|
+        }|
         }
 
         .carousel-container {
@@ -167,23 +177,56 @@ export default function HeroCarousel() {
           width: 100%;
           height: 100%;
           display: flex;
+          align-items: center;|
+          gap: 1.5rem;|
+          justify-content: center;|
+          margin-top: 1rem;|
+        }|
           align-items: center;
+          gap: 1.5rem;|
+          justify-content: center;|
+          margin-top: 1rem;|
+        }|
           justify-content: center;
+          margin-top: 1rem;|
+        }|
         }
 
         .carousel-slide {
           width: 100%;
           height: 100%;
           display: flex;
+          align-items: center;|
+          gap: 1.5rem;|
+          justify-content: center;|
+          margin-top: 1rem;|
+        }|
           align-items: center;
+          gap: 1.5rem;|
+          justify-content: center;|
+          margin-top: 1rem;|
+        }|
           justify-content: center;
+          margin-top: 1rem;|
+        }|
         }
 
         .slide-content {
           display: flex;
+          align-items: center;|
+          gap: 1.5rem;|
+          justify-content: center;|
+          margin-top: 1rem;|
+        }|
           flex-direction: column;
           align-items: center;
+          gap: 1.5rem;|
+          justify-content: center;|
+          margin-top: 1rem;|
+        }|
           justify-content: center;
+          margin-top: 1rem;|
+        }|
           max-width: 1200px;
           width: 100%;
           padding: 0 2rem;
@@ -192,7 +235,7 @@ export default function HeroCarousel() {
 
         .product-showcase {
           position: relative;
-          margin-bottom: 3rem;
+          margin-
         }
 
         .product-image-container {
@@ -254,13 +297,20 @@ export default function HeroCarousel() {
         }
 
         .order-now-btn:hover {
+        .product-actions {|
+          display: flex;|
+          align-items: center;|
+          gap: 1.5rem;|
+          justify-content: center;|
+          margin-top: 1rem;|
+        }|
           background: #1a1a1a;
           transform: translateY(-3px);
           box-shadow: 0 12px 35px rgba(0,0,0,0.4);
         }
 
         .carousel-arrow {
-          position: absolute;
+          position: static;
           top: 50%;
           transform: translateY(-50%);
           background: rgba(255, 255, 255, 0.9);
@@ -269,8 +319,19 @@ export default function HeroCarousel() {
           height: 60px;
           border-radius: 50%;
           display: flex;
+          align-items: center;|
+          gap: 1.5rem;|
+          justify-content: center;|
+          margin-top: 1rem;|
+        }|
           align-items: center;
+          gap: 1.5rem;|
+          justify-content: center;|
+          margin-top: 1rem;|
+        }|
           justify-content: center;
+          margin-top: 1rem;|
+        }|
           cursor: pointer;
           color: #E91E63;
           box-shadow: 0 8px 25px rgba(0,0,0,0.15);
@@ -293,11 +354,16 @@ export default function HeroCarousel() {
         }
 
         .carousel-indicators {
-          position: absolute;
+          position: static;
           bottom: 8rem;
-          left: 50%;
-          transform: translateX(-50%);
+          
+          
           display: flex;
+          align-items: center;|
+          gap: 1.5rem;|
+          justify-content: center;|
+          margin-top: 1rem;|
+        }|
           gap: 1rem;
           z-index: 10;
         }
@@ -324,7 +390,7 @@ export default function HeroCarousel() {
         }
 
         .autoplay-toggle {
-          position: absolute;
+          position: static;
           bottom: 8rem;
           right: 3rem;
           background: rgba(0, 0, 0, 0.7);
@@ -334,8 +400,19 @@ export default function HeroCarousel() {
           height: 50px;
           border-radius: 50%;
           display: flex;
+          align-items: center;|
+          gap: 1.5rem;|
+          justify-content: center;|
+          margin-top: 1rem;|
+        }|
           align-items: center;
+          gap: 1.5rem;|
+          justify-content: center;|
+          margin-top: 1rem;|
+        }|
           justify-content: center;
+          margin-top: 1rem;|
+        }|
           cursor: pointer;
           transition: all 0.3s ease;
           z-index: 10;
@@ -348,10 +425,10 @@ export default function HeroCarousel() {
         }
 
         .week-label {
-          position: absolute;
-          bottom: 3rem;
-          left: 50%;
-          transform: translateX(-50%);
+          position: static;
+          
+          
+          
           background: #E91E63;
           color: white;
           padding: 12px 20px;
