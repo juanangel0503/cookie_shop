@@ -29,9 +29,14 @@ export default function Header() {
             <Image 
               src="/assets/logos/HEB-White-Logo@4x.png" 
               alt="Happily Ever Bakers" 
-              width={140} 
-              height={45}
+              width={200} 
+              height={60}
               className="header-logo"
+              style={{ 
+                width: 'auto', 
+                height: '50px',
+                objectFit: 'contain'
+              }}
             />
           </div>
           
@@ -139,8 +144,10 @@ export default function Header() {
         }
 
         .header-logo {
-          height: 45px;
-          width: auto;
+          height: 50px !important;
+          width: auto !important;
+          max-width: 200px;
+          object-fit: contain !important;
           filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.1));
         }
 
@@ -274,7 +281,8 @@ export default function Header() {
           }
 
           .header-logo {
-            height: 40px;
+            height: 45px !important;
+            max-width: 180px;
           }
 
           .order-now-header-btn {
@@ -303,7 +311,8 @@ export default function Header() {
           }
 
           .header-logo {
-            height: 35px;
+            height: 40px !important;
+            max-width: 160px;
           }
 
           .order-now-header-btn {
