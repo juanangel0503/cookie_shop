@@ -42,7 +42,7 @@ export default function Header() {
           </div>
           
           <div className="header-right">
-            <Link href="/"><button className="order-now-header-btn">Order Now</button></Link>
+            <Link href="/order"><button className="order-now-header-btn">Order Now</button></Link>
           </div>
         </div>
       </header>
