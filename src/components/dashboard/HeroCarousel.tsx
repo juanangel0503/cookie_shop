@@ -102,9 +102,9 @@ export default function HeroCarousel() {
               <h1 className="product-title">{carouselItems[currentIndex].title}</h1>
               <p className="product-description">{carouselItems[currentIndex].description}</p>
               <div className="product-actions">
-                <div className="week-label">Week of Sep 16 - 21</div>|
-                <Link href="/dashboard"><button className="order-now-btn">{carouselItems[currentIndex].ctaText}</button></Link>|
-              </div>|
+                <div className="week-label">Week of Sep 16 - 21</div>
+                <Link href="/dashboard"><button className="order-now-btn">{carouselItems[currentIndex].ctaText}</button></Link>
+              </div>
             </div>
           </div>
         </div>
@@ -157,19 +157,21 @@ export default function HeroCarousel() {
           overflow: hidden;
           margin-top: 80px;
           display: flex;
-          align-items: center;|
-          gap: 1.5rem;|
-          justify-content: center;|
-          margin-top: 1rem;|
-        }|
           align-items: center;
-          gap: 1.5rem;|
-          justify-content: center;|
-          margin-top: 1rem;|
-        }|
+          gap: 1.5rem;
+        }
           justify-content: center;
-          margin-top: 1rem;|
-        }|
+          margin-top: 1rem;
+        }
+          align-items: center;
+          gap: 1.5rem;
+        }
+          justify-content: center;
+          margin-top: 1rem;
+        }
+          justify-content: center;
+          margin-top: 1rem;
+        }
         }
 
         .carousel-container {
@@ -177,56 +179,62 @@ export default function HeroCarousel() {
           width: 100%;
           height: 100%;
           display: flex;
-          align-items: center;|
-          gap: 1.5rem;|
-          justify-content: center;|
-          margin-top: 1rem;|
-        }|
           align-items: center;
-          gap: 1.5rem;|
-          justify-content: center;|
-          margin-top: 1rem;|
-        }|
+          gap: 1.5rem;
+        }
           justify-content: center;
-          margin-top: 1rem;|
-        }|
+          margin-top: 1rem;
+        }
+          align-items: center;
+          gap: 1.5rem;
+        }
+          justify-content: center;
+          margin-top: 1rem;
+        }
+          justify-content: center;
+          margin-top: 1rem;
+        }
         }
 
         .carousel-slide {
           width: 100%;
           height: 100%;
           display: flex;
-          align-items: center;|
-          gap: 1.5rem;|
-          justify-content: center;|
-          margin-top: 1rem;|
-        }|
           align-items: center;
-          gap: 1.5rem;|
-          justify-content: center;|
-          margin-top: 1rem;|
-        }|
+          gap: 1.5rem;
+        }
           justify-content: center;
-          margin-top: 1rem;|
-        }|
+          margin-top: 1rem;
+        }
+          align-items: center;
+          gap: 1.5rem;
+        }
+          justify-content: center;
+          margin-top: 1rem;
+        }
+          justify-content: center;
+          margin-top: 1rem;
+        }
         }
 
         .slide-content {
           display: flex;
-          align-items: center;|
-          gap: 1.5rem;|
-          justify-content: center;|
-          margin-top: 1rem;|
-        }|
+          align-items: center;
+          gap: 1.5rem;
+        }
+          justify-content: center;
+          margin-top: 1rem;
+        }
           flex-direction: column;
           align-items: center;
-          gap: 1.5rem;|
-          justify-content: center;|
-          margin-top: 1rem;|
-        }|
+          gap: 1.5rem;
+        }
           justify-content: center;
-          margin-top: 1rem;|
-        }|
+          margin-top: 1rem;
+        }
+          justify-content: center;
+          margin-top: 1rem;
+        }
           max-width: 1200px;
           width: 100%;
           padding: 0 2rem;
@@ -297,13 +305,14 @@ export default function HeroCarousel() {
         }
 
         .order-now-btn:hover {
-        .product-actions {|
-          display: flex;|
-          align-items: center;|
-          gap: 1.5rem;|
-          justify-content: center;|
-          margin-top: 1rem;|
-        }|
+        .product-actions {
+          display: flex;
+          align-items: center;
+          gap: 1.5rem;
+        }
+          justify-content: center;
+          margin-top: 1rem;
+        }
           background: #1a1a1a;
           transform: translateY(-3px);
           box-shadow: 0 12px 35px rgba(0,0,0,0.4);
@@ -319,24 +328,25 @@ export default function HeroCarousel() {
           height: 60px;
           border-radius: 50%;
           display: flex;
-          align-items: center;|
-          gap: 1.5rem;|
-          justify-content: center;|
-          margin-top: 1rem;|
-        }|
           align-items: center;
-          gap: 1.5rem;|
-          justify-content: center;|
-          margin-top: 1rem;|
-        }|
+          gap: 1.5rem;
+        }
           justify-content: center;
-          margin-top: 1rem;|
-        }|
+          margin-top: 1rem;
+        }
+          align-items: center;
+          gap: 1.5rem;
+        }
+          justify-content: center;
+          margin-top: 1rem;
+        }
+          justify-content: center;
+          margin-top: 1rem;
+        }
           cursor: pointer;
           color: #E91E63;
           box-shadow: 0 8px 25px rgba(0,0,0,0.15);
           transition: all 0.3s ease;
-          z-index: 10;
         }
 
         .carousel-arrow:hover {
@@ -359,13 +369,12 @@ export default function HeroCarousel() {
           
           
           display: flex;
-          align-items: center;|
-          gap: 1.5rem;|
-          justify-content: center;|
-          margin-top: 1rem;|
-        }|
-          gap: 1rem;
-          z-index: 10;
+          align-items: center;
+          gap: 1.5rem;
+        }
+          justify-content: center;
+          margin-top: 1rem;
+        }
         }
 
         .indicator {
@@ -400,22 +409,23 @@ export default function HeroCarousel() {
           height: 50px;
           border-radius: 50%;
           display: flex;
-          align-items: center;|
-          gap: 1.5rem;|
-          justify-content: center;|
-          margin-top: 1rem;|
-        }|
           align-items: center;
-          gap: 1.5rem;|
-          justify-content: center;|
-          margin-top: 1rem;|
-        }|
+          gap: 1.5rem;
+        }
           justify-content: center;
-          margin-top: 1rem;|
-        }|
+          margin-top: 1rem;
+        }
+          align-items: center;
+          gap: 1.5rem;
+        }
+          justify-content: center;
+          margin-top: 1rem;
+        }
+          justify-content: center;
+          margin-top: 1rem;
+        }
           cursor: pointer;
           transition: all 0.3s ease;
-          z-index: 10;
           backdrop-filter: blur(10px);
         }
 
@@ -435,7 +445,6 @@ export default function HeroCarousel() {
           border-radius: 25px;
           font-size: 1rem;
           font-weight: 600;
-          z-index: 10;
           box-shadow: 0 4px 15px rgba(233, 30, 99, 0.3);
         }
 
