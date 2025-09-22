@@ -81,9 +81,9 @@ export default function Footer() {
             <Image 
               src="/assets/logos/HEB-White-Logo@4x.png" 
               alt="Happily Ever Bakers" 
-              width={180} 
-              height={60}
-              className="logo"
+              width={200} 
+              height={50}
+              className="logo" style={{ width: "auto", height: "50px", maxWidth: "100%", objectFit: "contain" }}
             />
           </div>
           
@@ -198,8 +198,8 @@ export default function Footer() {
         }
 
         .logo {
-          height: 60px;
-          width: auto;
+          height: 50px;
+          width: auto; max-width: 100%; object-fit: contain;
           filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.1));
         }
 
