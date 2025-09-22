@@ -88,7 +88,7 @@ export default function Footer() {
           </div>
           
           <div className="footer-legal">
-            <p className="copyright">©2024 all rights reserved.</p>
+            <p className="copyright">©{new Date().getFullYear()} all rights reserved.</p>
             <div className="legal-links">
               <a href="/privacy" className="legal-link">Privacy policy</a>
               <span className="separator">|</span>
