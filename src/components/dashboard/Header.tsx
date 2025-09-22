@@ -28,7 +28,7 @@ export default function Header() {
           
           <div className="header-center">
             <Image 
-              src="/assets/logos/HEB-White-Logo@4x.png" 
+              src="/images/logos/heb-white-logo.png" 
               alt="Happily Ever Bakers" 
               width={200} 
               height={60}

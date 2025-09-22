@@ -18,21 +18,21 @@ const carouselItems: CarouselItem[] = [
     id: '1',
     title: 'Semi-Sweet Chocolate Chunk Cookie',
     description: 'Chocolate chip, but make it chunky—a delicious cookie filled with irresistible semi-sweet chocolate chunks and a sprinkle of flaky sea salt.',
-    image: '/assets/products/Chocolate Chip Horizontal.JPG',
+    image: '/images/products/chocolate-chip-horizontal.jpg',
     ctaText: 'Order Now'
   },
   {
     id: '2',
     title: 'Cinnamon Roll Cheesecake',
     description: 'Creamy cinnamon cheesecake on a cinnamon-spiced graham cracker crust, swirled with buttery cinnamon topping, and finished with cream cheese glaze and a dollop of fresh whipped cream.',
-    image: '/assets/products/Cookies and Cream Horizontal.JPG',
+    image: '/images/products/cookies-cream-horizontal.jpg',
     ctaText: 'Order Now'
   },
   {
     id: '3',
     title: 'Raspberry Cupcake Cookie',
     description: 'A vanilla cupcake cookie topped with a decadent swirl of raspberry cream cheese frosting and a dash of white sprinkles.',
-    image: '/assets/products/Variety Horizontal.JPG',
+    image: '/images/products/variety-horizontal.jpg',
     ctaText: 'Order Now'
   }
 ];

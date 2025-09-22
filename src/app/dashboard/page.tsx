@@ -124,7 +124,7 @@ export default function ShopPage() {
         <div className="container">
           <div className="logo">
             <Image 
-              src="/assets/logos/HEB-White-Logo@4x.png" 
+              src="/images/logos/heb-white-logo.png" 
               alt="Happily Ever Bakers Logo" 
               width={50} 
               height={50}

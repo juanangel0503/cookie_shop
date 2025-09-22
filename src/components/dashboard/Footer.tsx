@@ -79,7 +79,7 @@ export default function Footer() {
         <div className="footer-lower">
           <div className="footer-logo">
             <Image 
-              src="/assets/logos/HEB-White-Logo@4x.png" 
+              src="/images/logos/heb-white-logo.png" 
               alt="Happily Ever Bakers" 
               width={200} 
               height={50}

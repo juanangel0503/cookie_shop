@@ -15,28 +15,28 @@ const featuredCookies: FeaturedCookie[] = [
     id: '1',
     name: 'National Flavors',
     description: 'Our signature collection of cookies that are always available',
-    image: '/assets/products/Chocolate Chip Horizontal.JPG',
+    image: '/images/products/chocolate-chip-horizontal.jpg',
     category: 'Featured'
   },
   {
     id: '2',
     name: 'Semi-Sweet Chocolate Chunk Cookie',
     description: 'Chocolate chip, but make it chunky—a delicious cookie filled with irresistible semi-sweet chocolate chunks and a sprinkle of flaky sea salt.',
-    image: '/assets/products/Chocolate Chip Horizontal.JPG',
+    image: '/images/products/chocolate-chip-horizontal.jpg',
     category: 'Chocolate'
   },
   {
     id: '3',
     name: 'Cinnamon Roll Cheesecake',
     description: 'Creamy cinnamon cheesecake on a cinnamon-spiced graham cracker crust, swirled with buttery cinnamon topping, and finished with cream cheese glaze and a dollop of fresh whipped cream.',
-    image: '/assets/products/Cookies and Cream Horizontal.JPG',
+    image: '/images/products/cookies-cream-horizontal.jpg',
     category: 'Dessert'
   },
   {
     id: '4',
     name: 'Raspberry Cupcake Cookie',
     description: 'A vanilla cupcake cookie topped with a decadent swirl of raspberry cream cheese frosting and a dash of white sprinkles.',
-    image: '/assets/products/Variety Horizontal.JPG',
+    image: '/images/products/variety-horizontal.jpg',
     category: 'Fruity'
   }
 ];
