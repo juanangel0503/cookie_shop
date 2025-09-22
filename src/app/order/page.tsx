@@ -39,7 +39,7 @@ export default function OrderLanding() {
           <div className="choice-card disabled">
             <div className="card-illustration">
               <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
-                {/* Gift card illustration */}
+                {/* Gift box icon */}
                 <rect x="15" y="20" width="30" height="20" rx="3" fill="none" stroke="#666" strokeWidth="2"/>
                 <rect x="20" y="25" width="20" height="10" rx="2" fill="#666"/>
                 <rect x="25" y="30" width="10" height="2" fill="white"/>
@@ -53,7 +53,7 @@ export default function OrderLanding() {
           <div className="choice-card disabled">
             <div className="card-illustration">
               <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
-                {/* Catering illustration */}
+                {/* Cloche/food cover icon */}
                 <ellipse cx="30" cy="35" rx="20" ry="15" fill="none" stroke="#666" strokeWidth="2"/>
                 <rect x="25" y="25" width="10" height="8" rx="2" fill="#666"/>
                 <circle cx="30" cy="20" r="3" fill="#666"/>
@@ -70,28 +70,32 @@ export default function OrderLanding() {
         .order-landing { 
           min-height: 100vh; 
           background: white; 
-          padding: 2rem 0;
+          padding: 4rem 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
         }
         
         .order-container { 
-          max-width: 1000px; 
+          max-width: 800px; 
           margin: 0 auto; 
           padding: 0 2rem; 
           text-align: center;
         }
         
         .title { 
-          font-size: 3rem; 
+          font-size: 3.5rem; 
           font-weight: 800; 
-          margin-bottom: 3rem; 
-          color: var(--text-dark);
+          margin-bottom: 4rem; 
+          color: #2c2c2c;
           letter-spacing: -0.02em;
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
         
         .choices-grid {
           display: grid;
           grid-template-columns: repeat(2, 1fr);
-          gap: 2rem;
+          gap: 2.5rem;
           max-width: 600px;
           margin: 0 auto;
         }
@@ -100,13 +104,13 @@ export default function OrderLanding() {
           background: white;
           border: 2px solid #e0e0e0;
           border-radius: 20px;
-          padding: 2rem;
+          padding: 3rem 2rem;
           text-decoration: none;
           color: inherit;
           transition: all 0.3s ease;
-          box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+          box-shadow: 0 8px 30px rgba(0,0,0,0.12);
           position: relative;
-          min-height: 200px;
+          min-height: 220px;
           display: flex;
           flex-direction: column;
           align-items: center;
@@ -114,28 +118,29 @@ export default function OrderLanding() {
         }
         
         .choice-card:hover:not(.disabled) {
-          transform: translateY(-8px);
-          box-shadow: 0 12px 40px rgba(0,0,0,0.15);
-          border-color: var(--primary-pink);
+          transform: translateY(-5px);
+          box-shadow: 0 15px 50px rgba(0,0,0,0.18);
+          border-color: #E91E63;
         }
         
         .choice-card.delivery {
-          background: var(--primary-pink-light);
-          border-color: var(--primary-pink);
+          background: #F8BBD9;
+          border-color: #E91E63;
         }
         
         .choice-card.pickup {
-          background: var(--primary-pink-light);
-          border-color: var(--primary-pink);
+          background: #F8BBD9;
+          border-color: #E91E63;
         }
         
         .choice-card.disabled {
-          opacity: 0.6;
+          opacity: 0.7;
           cursor: not-allowed;
+          background: white;
         }
         
         .card-illustration {
-          margin-bottom: 1.5rem;
+          margin-bottom: 2rem;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -145,35 +150,63 @@ export default function OrderLanding() {
           object-fit: contain;
           max-width: 100%;
           height: auto;
+          filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
         }
         
         .card-title {
-          font-size: 1.5rem;
+          font-size: 1.8rem;
           font-weight: 700;
           margin: 0;
-          color: var(--text-dark);
+          color: #2c2c2c;
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
         
         .card-note {
-          font-size: 0.9rem;
-          color: var(--text-light);
-          margin: 0.5rem 0 0 0;
+          font-size: 1rem;
+          color: #999;
+          margin: 0.8rem 0 0 0;
           font-style: italic;
+          font-weight: 500;
         }
         
         @media (max-width: 768px) {
+          .order-landing {
+            padding: 2rem 0;
+          }
+          
           .title {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
+            margin-bottom: 3rem;
           }
           
           .choices-grid {
             grid-template-columns: 1fr;
-            gap: 1.5rem;
+            gap: 2rem;
+            max-width: 400px;
           }
           
           .choice-card {
+            min-height: 200px;
+            padding: 2.5rem 2rem;
+          }
+          
+          .card-title {
+            font-size: 1.6rem;
+          }
+        }
+        
+        @media (max-width: 480px) {
+          .title {
+            font-size: 2.2rem;
+          }
+          
+          .choice-card {
+            padding: 2rem 1.5rem;
             min-height: 180px;
-            padding: 1.5rem;
+          }
+          
+          .card-title {
+            font-size: 1.4rem;
           }
         }
       `}</style>
