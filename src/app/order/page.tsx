@@ -6,7 +6,7 @@ import Image from 'next/image';
 export default function OrderLanding() {
   return (
     <div className="order-page">
-      {/* Header matching Crumbl style */}
+      {/* Header with HEB logo */}
       <header className="order-header">
         <div className="header-container">
           <button className="menu-button">
@@ -19,7 +19,13 @@ export default function OrderLanding() {
           </button>
           
           <div className="logo">
-            <h1>crumbl</h1>
+            <Image
+              src="/images/logos/heb-white-logo.png"
+              alt="Happily Ever Bakers"
+              width={120}
+              height={40}
+              className="logo-image"
+            />
           </div>
           
           <div className="header-right"></div>
@@ -143,12 +149,15 @@ export default function OrderLanding() {
           color: #333;
         }
 
-        .logo h1 {
-          font-size: 2rem;
-          font-weight: 800;
-          color: #333;
-          margin: 0;
-          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        .logo {
+          display: flex;
+          align-items: center;
+        }
+
+        .logo-image {
+          object-fit: contain;
+          max-width: 100%;
+          height: auto;
         }
 
         .header-right {
@@ -249,8 +258,8 @@ export default function OrderLanding() {
             padding: 0 1rem;
           }
           
-          .logo h1 {
-            font-size: 1.5rem;
+          .logo-image {
+            height: 35px !important;
           }
           
           .order-main {
