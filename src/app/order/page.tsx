@@ -8,7 +8,7 @@ export default function OrderLanding() {
     <div className="order-page">
       {/* Header matching Crumbl style */}
       <header className="order-header">
-        <div className="header-content">
+        <div className="header-container">
           <button className="menu-button">
             <div className="hamburger">
               <span></span>
@@ -22,14 +22,14 @@ export default function OrderLanding() {
             <h1>crumbl</h1>
           </div>
           
-          <div className="header-spacer"></div>
+          <div className="header-right"></div>
         </div>
       </header>
 
       {/* Main content */}
       <main className="order-main">
         <div className="order-container">
-          <h1 className="title">Start an Order</h1>
+          <h1 className="main-title">Start an Order</h1>
           
           <div className="choices-grid">
             <Link href="/order/menu?method=delivery" className="choice-card delivery">
@@ -94,10 +94,12 @@ export default function OrderLanding() {
         .order-header {
           background: #F8BBD9;
           padding: 1rem 0;
-          box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+          position: sticky;
+          top: 0;
+          z-index: 100;
         }
 
-        .header-content {
+        .header-container {
           max-width: 1200px;
           margin: 0 auto;
           padding: 0 2rem;
@@ -115,7 +117,7 @@ export default function OrderLanding() {
           cursor: pointer;
           padding: 0.5rem;
           border-radius: 8px;
-          transition: background-color 0.2s ease;
+          transition: background-color 0.2s;
         }
 
         .menu-button:hover {
@@ -137,7 +139,7 @@ export default function OrderLanding() {
 
         .menu-text {
           font-size: 1rem;
-          font-weight: 600;
+          font-weight: 500;
           color: #333;
         }
 
@@ -146,11 +148,11 @@ export default function OrderLanding() {
           font-weight: 800;
           color: #333;
           margin: 0;
-          letter-spacing: -0.02em;
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
 
-        .header-spacer {
-          width: 100px;
+        .header-right {
+          width: 100px; /* Balance the layout */
         }
 
         .order-main {
@@ -168,7 +170,7 @@ export default function OrderLanding() {
           text-align: center;
         }
         
-        .title { 
+        .main-title { 
           font-size: 3.5rem; 
           font-weight: 800; 
           margin-bottom: 4rem; 
@@ -188,14 +190,14 @@ export default function OrderLanding() {
         .choice-card {
           background: white;
           border: none;
-          border-radius: 20px;
-          padding: 3rem 2rem;
+          border-radius: 16px;
+          padding: 2.5rem 2rem;
           text-decoration: none;
           color: inherit;
           transition: all 0.3s ease;
-          box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+          box-shadow: 0 4px 20px rgba(0,0,0,0.1);
           position: relative;
-          min-height: 250px;
+          min-height: 200px;
           display: flex;
           flex-direction: column;
           align-items: center;
@@ -203,8 +205,8 @@ export default function OrderLanding() {
         }
         
         .choice-card:hover:not(.disabled) {
-          transform: translateY(-3px);
-          box-shadow: 0 12px 35px rgba(0,0,0,0.2);
+          transform: translateY(-4px);
+          box-shadow: 0 8px 30px rgba(0,0,0,0.15);
         }
         
         .choice-card.delivery {
@@ -222,7 +224,7 @@ export default function OrderLanding() {
         }
         
         .card-illustration {
-          margin-bottom: 2rem;
+          margin-bottom: 1.5rem;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -235,7 +237,7 @@ export default function OrderLanding() {
         }
         
         .card-title {
-          font-size: 1.8rem;
+          font-size: 1.5rem;
           font-weight: 700;
           margin: 0;
           color: #333;
@@ -243,16 +245,20 @@ export default function OrderLanding() {
         }
         
         @media (max-width: 768px) {
-          .header-content {
+          .header-container {
             padding: 0 1rem;
+          }
+          
+          .logo h1 {
+            font-size: 1.5rem;
           }
           
           .order-main {
             padding: 2rem 0;
           }
           
-          .title {
-            font-size: 2.8rem;
+          .main-title {
+            font-size: 2.5rem;
             margin-bottom: 3rem;
           }
           
@@ -263,27 +269,12 @@ export default function OrderLanding() {
           }
           
           .choice-card {
-            min-height: 220px;
-            padding: 2.5rem 2rem;
-          }
-          
-          .card-title {
-            font-size: 1.6rem;
-          }
-        }
-        
-        @media (max-width: 480px) {
-          .title {
-            font-size: 2.2rem;
-          }
-          
-          .choice-card {
+            min-height: 180px;
             padding: 2rem 1.5rem;
-            min-height: 200px;
           }
           
           .card-title {
-            font-size: 1.4rem;
+            font-size: 1.3rem;
           }
         }
       `}</style>
