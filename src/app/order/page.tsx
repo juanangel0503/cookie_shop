@@ -2,36 +2,13 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
+import Header from '@/components/dashboard/Header';
 
 export default function OrderLanding() {
   return (
     <div className="order-page">
-      {/* Header with HEB logo */}
-      <header className="order-header">
-        <div className="header-container">
-          <button className="menu-button">
-            <div className="hamburger">
-              <span></span>
-              <span></span>
-              <span></span>
-            </div>
-            <span className="menu-text">Menu</span>
-          </button>
-          
-          <div className="logo">
-            <Image
-              src="/images/logos/heb-white-logo.png"
-              alt="Happily Ever Bakers"
-              width={120}
-              height={40}
-              className="logo-image"
-            />
-          </div>
-          
-          <div className="header-right"></div>
-        </div>
-      </header>
-
+      <Header />
+      
       {/* Main content */}
       <main className="order-main">
         <div className="order-container">
@@ -95,73 +72,6 @@ export default function OrderLanding() {
         .order-page {
           min-height: 100vh;
           background: white;
-        }
-
-        .order-header {
-          background: #F8BBD9;
-          padding: 1rem 0;
-          position: sticky;
-          top: 0;
-          z-index: 100;
-        }
-
-        .header-container {
-          max-width: 1200px;
-          margin: 0 auto;
-          padding: 0 2rem;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-        }
-
-        .menu-button {
-          display: flex;
-          align-items: center;
-          gap: 0.5rem;
-          background: none;
-          border: none;
-          cursor: pointer;
-          padding: 0.5rem;
-          border-radius: 8px;
-          transition: background-color 0.2s;
-        }
-
-        .menu-button:hover {
-          background: rgba(255, 255, 255, 0.2);
-        }
-
-        .hamburger {
-          display: flex;
-          flex-direction: column;
-          gap: 3px;
-        }
-
-        .hamburger span {
-          width: 20px;
-          height: 2px;
-          background: #333;
-          border-radius: 1px;
-        }
-
-        .menu-text {
-          font-size: 1rem;
-          font-weight: 500;
-          color: #333;
-        }
-
-        .logo {
-          display: flex;
-          align-items: center;
-        }
-
-        .logo-image {
-          object-fit: contain;
-          max-width: 100%;
-          height: auto;
-        }
-
-        .header-right {
-          width: 100px; /* Balance the layout */
         }
 
         .order-main {
@@ -254,14 +164,6 @@ export default function OrderLanding() {
         }
         
         @media (max-width: 768px) {
-          .header-container {
-            padding: 0 1rem;
-          }
-          
-          .logo-image {
-            height: 35px !important;
-          }
-          
           .order-main {
             padding: 2rem 0;
           }
