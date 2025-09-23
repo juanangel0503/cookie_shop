@@ -40,30 +40,6 @@ export default function OrderLanding() {
               </div>
               <h3 className="card-title">Pickup</h3>
             </Link>
-
-            <div className="choice-card disabled">
-              <div className="card-illustration">
-                <svg width="120" height="120" viewBox="0 0 60 60" fill="none">
-                  <rect x="15" y="20" width="30" height="20" rx="3" fill="none" stroke="#333" strokeWidth="2"/>
-                  <rect x="20" y="25" width="20" height="10" rx="2" fill="#333"/>
-                  <rect x="25" y="30" width="10" height="2" fill="white"/>
-                  <path d="M15 20 L30 10 L45 20" stroke="#333" strokeWidth="2" fill="none"/>
-                </svg>
-              </div>
-              <h3 className="card-title">Digital Gift Cards</h3>
-            </div>
-
-            <div className="choice-card disabled">
-              <div className="card-illustration">
-                <svg width="120" height="120" viewBox="0 0 60 60" fill="none">
-                  <ellipse cx="30" cy="35" rx="20" ry="15" fill="none" stroke="#333" strokeWidth="2"/>
-                  <rect x="25" y="25" width="10" height="8" rx="2" fill="#333"/>
-                  <circle cx="30" cy="20" r="3" fill="#333"/>
-                  <path d="M27 20 L30 15 L33 20" stroke="#333" strokeWidth="2" fill="none"/>
-                </svg>
-              </div>
-              <h3 className="card-title">Catering</h3>
-            </div>
           </div>
         </div>
       </main>
@@ -83,7 +59,7 @@ export default function OrderLanding() {
         }
         
         .order-container { 
-          max-width: 1200px; 
+          max-width: 800px; 
           margin: 0 auto; 
           padding: 0 2rem; 
           text-align: center;
@@ -101,10 +77,10 @@ export default function OrderLanding() {
         
         .choices-grid {
           display: grid;
-          grid-template-columns: repeat(4, 1fr);
-          gap: 2rem;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 3rem;
           width: 100%;
-          max-width: 1000px;
+          max-width: 600px;
           margin: 0 auto;
         }
         
@@ -112,13 +88,13 @@ export default function OrderLanding() {
           background: white;
           border: none;
           border-radius: 16px;
-          padding: 2.5rem 1.5rem;
+          padding: 3rem 2rem;
           text-decoration: none;
           color: inherit;
           transition: all 0.3s ease;
           box-shadow: 0 4px 20px rgba(0,0,0,0.1);
           position: relative;
-          min-height: 280px;
+          min-height: 320px;
           display: flex;
           flex-direction: column;
           align-items: center;
@@ -139,19 +115,13 @@ export default function OrderLanding() {
           background: #F8BBD9;
         }
         
-        .choice-card.disabled {
-          opacity: 0.8;
-          cursor: not-allowed;
-          background: white;
-        }
-        
         .card-illustration {
-          margin-bottom: 1.5rem;
+          margin-bottom: 2rem;
           display: flex;
           align-items: center;
           justify-content: center;
           width: 100%;
-          height: 200px;
+          height: 220px;
         }
         
         .icon-image {
@@ -163,27 +133,11 @@ export default function OrderLanding() {
         }
         
         .card-title {
-          font-size: 1.5rem;
+          font-size: 1.8rem;
           font-weight: 700;
           margin: 0;
           color: #333;
           font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-        }
-        
-        @media (max-width: 1024px) {
-          .choices-grid {
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-          }
-          
-          .choice-card {
-            min-height: 250px;
-            padding: 2rem 1.5rem;
-          }
-          
-          .card-illustration {
-            height: 150px;
-          }
         }
         
         @media (max-width: 768px) {
@@ -198,21 +152,21 @@ export default function OrderLanding() {
           
           .choices-grid {
             grid-template-columns: 1fr;
-            gap: 1.5rem;
+            gap: 2rem;
             max-width: 400px;
           }
           
           .choice-card {
-            min-height: 200px;
-            padding: 2rem 1.5rem;
+            min-height: 280px;
+            padding: 2.5rem 2rem;
           }
           
           .card-illustration {
-            height: 120px;
+            height: 180px;
           }
           
           .card-title {
-            font-size: 1.3rem;
+            font-size: 1.5rem;
           }
         }
       `}</style>
