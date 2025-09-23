@@ -20,8 +20,8 @@ export default function OrderLanding() {
                 <Image
                   src="/images/icons/delivery-icon.png"
                   alt="Delivery"
-                  width={100}
-                  height={100}
+                  width={200}
+                  height={200}
                   className="icon-image"
                 />
               </div>
@@ -33,8 +33,8 @@ export default function OrderLanding() {
                 <Image
                   src="/images/icons/pickup-icon.png"
                   alt="Pickup"
-                  width={100}
-                  height={100}
+                  width={200}
+                  height={200}
                   className="icon-image"
                 />
               </div>
@@ -43,7 +43,7 @@ export default function OrderLanding() {
 
             <div className="choice-card disabled">
               <div className="card-illustration">
-                <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                <svg width="120" height="120" viewBox="0 0 60 60" fill="none">
                   <rect x="15" y="20" width="30" height="20" rx="3" fill="none" stroke="#333" strokeWidth="2"/>
                   <rect x="20" y="25" width="20" height="10" rx="2" fill="#333"/>
                   <rect x="25" y="30" width="10" height="2" fill="white"/>
@@ -55,7 +55,7 @@ export default function OrderLanding() {
 
             <div className="choice-card disabled">
               <div className="card-illustration">
-                <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                <svg width="120" height="120" viewBox="0 0 60 60" fill="none">
                   <ellipse cx="30" cy="35" rx="20" ry="15" fill="none" stroke="#333" strokeWidth="2"/>
                   <rect x="25" y="25" width="10" height="8" rx="2" fill="#333"/>
                   <circle cx="30" cy="20" r="3" fill="#333"/>
@@ -83,10 +83,11 @@ export default function OrderLanding() {
         }
         
         .order-container { 
-          max-width: 800px; 
+          max-width: 1200px; 
           margin: 0 auto; 
           padding: 0 2rem; 
           text-align: center;
+          width: 100%;
         }
         
         .main-title { 
@@ -100,9 +101,10 @@ export default function OrderLanding() {
         
         .choices-grid {
           display: grid;
-          grid-template-columns: repeat(2, 1fr);
+          grid-template-columns: repeat(4, 1fr);
           gap: 2rem;
-          max-width: 600px;
+          width: 100%;
+          max-width: 1000px;
           margin: 0 auto;
         }
         
@@ -110,17 +112,18 @@ export default function OrderLanding() {
           background: white;
           border: none;
           border-radius: 16px;
-          padding: 2.5rem 2rem;
+          padding: 2.5rem 1.5rem;
           text-decoration: none;
           color: inherit;
           transition: all 0.3s ease;
           box-shadow: 0 4px 20px rgba(0,0,0,0.1);
           position: relative;
-          min-height: 200px;
+          min-height: 280px;
           display: flex;
           flex-direction: column;
           align-items: center;
           justify-content: center;
+          width: 100%;
         }
         
         .choice-card:hover:not(.disabled) {
@@ -147,11 +150,15 @@ export default function OrderLanding() {
           display: flex;
           align-items: center;
           justify-content: center;
+          width: 100%;
+          height: 200px;
         }
         
         .icon-image {
           object-fit: contain;
           max-width: 100%;
+          max-height: 100%;
+          width: auto;
           height: auto;
         }
         
@@ -161,6 +168,22 @@ export default function OrderLanding() {
           margin: 0;
           color: #333;
           font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        
+        @media (max-width: 1024px) {
+          .choices-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+          }
+          
+          .choice-card {
+            min-height: 250px;
+            padding: 2rem 1.5rem;
+          }
+          
+          .card-illustration {
+            height: 150px;
+          }
         }
         
         @media (max-width: 768px) {
@@ -180,8 +203,12 @@ export default function OrderLanding() {
           }
           
           .choice-card {
-            min-height: 180px;
+            min-height: 200px;
             padding: 2rem 1.5rem;
+          }
+          
+          .card-illustration {
+            height: 120px;
           }
           
           .card-title {
