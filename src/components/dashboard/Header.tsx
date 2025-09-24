@@ -75,7 +75,8 @@ export default function Header() {
           top: 0;
           left: 0;
           right: 0;
-          background: #F8BBD9;
+          --tw-bg-opacity: 1;
+          background: rgb(255 185 205/var(--tw-bg-opacity));
           z-index: 1000;
           height: 80px;
           display: flex;

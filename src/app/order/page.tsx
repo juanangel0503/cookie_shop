@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
+import AnimatedCanvasImage from '@/components/AnimatedCanvasImage';
 import Header from '@/components/dashboard/Header';
 
 export default function OrderLanding() {
@@ -15,30 +16,32 @@ export default function OrderLanding() {
           <h1 className="main-title">Start an Order</h1>
           
           <div className="choices-grid">
-            <Link href="/order/menu?method=delivery" className="choice-card delivery">
-              <div className="card-illustration">
-                <Image
-                  src="/images/icons/delivery-icon.png"
-                  alt="Delivery"
-                  width={300}
-                  height={300}
-                  className="icon-image"
-                />
+            <Link href="/order/menu?method=delivery">
+              <div className="choice-card delivery">
+                <div className="card-illustration">
+                  <AnimatedCanvasImage
+                    src="/images/icons/delivery-icon.png"
+                    alt="Delivery"
+                    width={300}
+                    height={300}
+                  />
+                </div>
+                <h3 className="card-title">Delivery</h3>
               </div>
-              <h3 className="card-title">Delivery</h3>
             </Link>
 
-            <Link href="/order/menu?method=pickup" className="choice-card pickup">
-              <div className="card-illustration">
-                <Image
-                  src="/images/icons/pickup-icon.png"
-                  alt="Pickup"
-                  width={300}
-                  height={300}
-                  className="icon-image"
-                />
+            <Link href="/order/location">
+              <div className="choice-card pickup">
+                <div className="card-illustration">
+                  <AnimatedCanvasImage
+                    src="/images/icons/pickup-icon.png"
+                    alt="Pickup"
+                    width={300}
+                    height={300}
+                  />
+                </div>
+                <h3 className="card-title">Pickup</h3>
               </div>
-              <h3 className="card-title">Pickup</h3>
             </Link>
           </div>
         </div>
@@ -86,13 +89,13 @@ export default function OrderLanding() {
         
         .choice-card {
           background: white;
-          border: none;
+          border: 2px solid transparent;
           border-radius: 20px;
-          padding: 3rem 2rem;
+          padding: 15px;
           text-decoration: none;
           color: inherit;
-          transition: all 0.3s ease;
-          box-shadow: 0 6px 25px rgba(0,0,0,0.12);
+          transition: all 0.2s ease;
+          box-shadow: none;
           position: relative;
           min-height: 450px;
           display: flex;
@@ -100,48 +103,49 @@ export default function OrderLanding() {
           align-items: center;
           justify-content: center;
           width: 100%;
+          cursor: pointer;
         }
         
         .choice-card:hover:not(.disabled) {
-          transform: translateY(-6px);
-          box-shadow: 0 12px 40px rgba(0,0,0,0.18);
+          transform: translateY(-2px);
         }
         
         .choice-card.delivery {
-          background: #F8BBD9;
+          --tw-bg-opacity: 1;
+          background: rgb(255 185 205/var(--tw-bg-opacity));
         }
         
         .choice-card.pickup {
-          background: #F8BBD9;
+          --tw-bg-opacity: 1;
+          background: rgb(255 185 205/var(--tw-bg-opacity));
         }
         
         .card-illustration {
-          margin-bottom: 2.5rem;
+          margin-bottom: 0.75rem;
           display: flex;
           align-items: center;
           justify-content: center;
           width: 100%;
           height: 300px;
-          overflow: hidden;
+          position: relative;
+          padding: 16px;
         }
         
         .icon-image {
           object-fit: contain !important;
+          width: 100% !important;
+          height: 100% !important;
           max-width: 100% !important;
           max-height: 100% !important;
-          width: auto !important;
-          height: auto !important;
-          min-width: 250px;
-          min-height: 250px;
         }
         
         .card-title {
-          font-size: 2rem;
-          font-weight: 700;
+          font-size: 2.25rem;
+          font-weight: 900;
           margin: 0;
           color: #333;
           font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-          text-decoration: underline;
+          text-decoration: none;
         }
         
         @media (max-width: 1024px) {
@@ -156,12 +160,21 @@ export default function OrderLanding() {
           }
           
           .card-illustration {
-            height: 250px;
+            height: 260px;
+            padding: 14px;
           }
-          
-          .icon-image {
-            min-width: 200px;
-            min-height: 200px;
+        }
+        
+        @media (min-width: 640px) {
+          .choice-card {
+            --tw-bg-opacity: 1;
+            background: rgb(255 185 205/var(--tw-bg-opacity));
+            border: 2px solid #000;
+            box-shadow: 10px 10px 0 #000;
+            padding: 3rem 2rem;
+          }
+          .choice-card:hover:not(.disabled) {
+            box-shadow: 12px 12px 0 #000;
           }
         }
         
@@ -187,16 +200,12 @@ export default function OrderLanding() {
           }
           
           .card-illustration {
-            height: 200px;
-          }
-          
-          .icon-image {
-            min-width: 180px;
-            min-height: 180px;
+            height: 210px;
+            padding: 12px;
           }
           
           .card-title {
-            font-size: 1.6rem;
+            font-size: 1.8rem;
           }
         }
         
@@ -208,15 +217,11 @@ export default function OrderLanding() {
           
           .card-illustration {
             height: 180px;
-          }
-          
-          .icon-image {
-            min-width: 150px;
-            min-height: 150px;
+            padding: 10px;
           }
           
           .card-title {
-            font-size: 1.4rem;
+            font-size: 1.6rem;
           }
         }
       `}</style>

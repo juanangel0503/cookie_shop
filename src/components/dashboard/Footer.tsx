@@ -102,7 +102,8 @@ export default function Footer() {
 
       <style jsx>{`
         .dashboard-footer {
-          background: #F8BBD9;
+          --tw-bg-opacity: 1;
+          background: rgb(255 185 205/var(--tw-bg-opacity));
           color: #2c2c2c;
           padding: 4rem 0 2rem;
           margin-top: 0;

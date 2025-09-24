@@ -160,7 +160,8 @@ export default function HeroCarousel() {
           width: 100%;
           height: 100vh;
           min-height: 800px;
-          background: #F8BBD9;
+          --tw-bg-opacity: 1;
+          background: rgb(255 185 205/var(--tw-bg-opacity));
           overflow: hidden;
           margin-top: 80px;
           display: flex;

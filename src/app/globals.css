@@ -3,12 +3,13 @@
 :root {
   /* HEB Brand Colors - Pink and White Only */
   --primary-pink: #E91E63; /* Happily Ever Bakers Pink */
-  --primary-pink-light: #F8BBD9;
+  --tw-bg-opacity: 1;
+  --primary-pink-light: rgb(255 185 205/var(--tw-bg-opacity));
   --primary-pink-dark: #C2185B;
 
   /* Gradients - Pink Only */
   --gradient-primary: linear-gradient(135deg, var(--primary-pink), var(--primary-pink-dark));
-  --gradient-rose: linear-gradient(135deg, #FCE4EC, #F8BBD9); /* Light pink/rose */
+  --gradient-rose: linear-gradient(135deg, #FCE4EC, rgb(255 185 205/var(--tw-bg-opacity))); /* Light pink/rose */
 
   /* Text Colors */
   --text-dark: #2c2c2c;
