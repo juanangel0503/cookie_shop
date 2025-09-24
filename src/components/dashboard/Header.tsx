@@ -39,35 +39,41 @@ export default function Header() {
           </div>
           
           <div className="header-center">
-            <Image 
-              src="/images/logos/heb-white-logo.png" 
-              alt="Happily Ever Bakers" 
-              width={200} 
-              height={60}
-              className="header-logo"
-              style={{ 
-                width: 'auto', 
-                height: '50px',
-                objectFit: 'contain'
-              }}
-            />
+            <span className="crumbl-logo">crumbl</span>
           </div>
           
           <div className="header-right">
-            <Link href="/checkout" className="cart-link">
-              <div className="cart-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                  <path fill="currentColor" d="M7 4V2C7 1.45 7.45 1 8 1H16C16.55 1 17 1.45 17 2V4H20C20.55 4 21 4.45 21 5S20.55 6 20 6H19V19C19 20.1 18.1 21 17 21H7C5.9 21 5 20.1 5 19V6H4C3.45 6 3 5.55 3 5S3.45 4 4 4H7ZM9 3V4H15V3H9ZM7 6V19H17V6H7Z"/>
-                </svg>
-                {getTotalItems() > 0 && (
-                  <span className="cart-badge">{getTotalItems()}</span>
-                )}
-              </div>
+            <Link href="/checkout" className="view-bag-btn">
+              <span className="bag-icon">🛍️</span>
+              <span className="bag-text">View Bag</span>
+              {getTotalItems() > 0 && (
+                <span className="bag-badge">{getTotalItems()}</span>
+              )}
             </Link>
-            <Link href="/order"><button className="order-now-header-btn">Order Now</button></Link>
           </div>
         </div>
       </header>
+
+      {/* Order Details Bar */}
+      <div className="order-details-bar">
+        <div className="order-info">
+          <div className="order-item">
+            <span className="order-icon">🏠</span>
+            <span className="order-text">Carry Out</span>
+            <span className="dropdown-arrow">▼</span>
+          </div>
+          <div className="order-item">
+            <span className="order-icon">🕐</span>
+            <span className="order-text">Today - 12:10 pm</span>
+            <span className="dropdown-arrow">▼</span>
+          </div>
+          <div className="order-item">
+            <span className="order-icon">📍</span>
+            <span className="order-text">Tikahtnu Commons - 111...</span>
+            <span className="dropdown-arrow">▼</span>
+          </div>
+        </div>
+      </div>
 
       {/* Mobile Menu Overlay */}
       <div className={`menu-overlay ${isMenuOpen ? 'active' : ''}`}>
@@ -170,81 +176,112 @@ export default function Header() {
           flex: 1;
         }
 
-        .header-logo {
-          height: 50px !important;
-          width: auto !important;
-          max-width: 200px;
-          object-fit: contain !important;
-          filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.1));
+        .crumbl-logo {
+          font-size: 2rem;
+          font-weight: 700;
+          color: #2c2c2c;
+          letter-spacing: -0.5px;
         }
 
         .header-right {
           display: flex;
           align-items: center;
           justify-content: flex-end;
-          gap: 1rem;
           flex: 1;
         }
 
-        .cart-link {
-          position: relative;
+        .view-bag-btn {
           display: flex;
           align-items: center;
-          justify-content: center;
-          width: 50px;
-          height: 50px;
-          background: rgba(255, 255, 255, 0.2);
-          border-radius: 50%;
-          transition: all 0.3s ease;
+          gap: 0.5rem;
+          background: #2c2c2c;
+          color: white;
+          padding: 12px 20px;
+          border-radius: 8px;
           text-decoration: none;
+          font-weight: 600;
+          transition: all 0.3s ease;
+          position: relative;
         }
 
-        .cart-link:hover {
-          background: rgba(255, 255, 255, 0.3);
-          transform: translateY(-2px);
+        .view-bag-btn:hover {
+          background: #1a1a1a;
+          transform: translateY(-1px);
         }
 
-        .cart-icon {
-          color: #2c2c2c;
-          font-size: 1.5rem;
+        .bag-icon {
+          font-size: 1.2rem;
         }
 
-        .cart-badge {
+        .bag-text {
+          font-size: 1rem;
+        }
+
+        .bag-badge {
           position: absolute;
-          top: -5px;
-          right: -5px;
+          top: -8px;
+          right: -8px;
           background: #e91e63;
           color: white;
           border-radius: 50%;
-          width: 24px;
-          height: 24px;
+          width: 20px;
+          height: 20px;
           display: flex;
           align-items: center;
           justify-content: center;
-          font-size: 0.8rem;
+          font-size: 0.7rem;
           font-weight: 600;
           border: 2px solid white;
-          box-shadow: 0 2px 8px rgba(233, 30, 99, 0.3);
         }
 
-        .order-now-header-btn {
-          background: #2c2c2c;
-          color: white;
-          border: none;
-          padding: 14px 28px;
-          border-radius: 30px;
-          font-size: 1.1rem;
-          font-weight: 600;
+        .order-details-bar {
+          position: fixed;
+          top: 80px;
+          left: 0;
+          right: 0;
+          background: #f8f9fa;
+          border-bottom: 1px solid #e0e0e0;
+          z-index: 999;
+          padding: 1rem 0;
+        }
+
+        .order-info {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 2rem;
+          max-width: 1400px;
+          margin: 0 auto;
+          padding: 0 2rem;
+        }
+
+        .order-item {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
           cursor: pointer;
           transition: all 0.3s ease;
-          box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-          letter-spacing: 0.5px;
+          padding: 0.5rem;
+          border-radius: 6px;
         }
 
-        .order-now-header-btn:hover {
-          background: #1a1a1a;
-          transform: translateY(-2px);
-          box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        .order-item:hover {
+          background: rgba(0, 0, 0, 0.05);
+        }
+
+        .order-icon {
+          font-size: 1.1rem;
+        }
+
+        .order-text {
+          font-weight: 600;
+          color: #2c2c2c;
+          font-size: 0.9rem;
+        }
+
+        .dropdown-arrow {
+          color: #666;
+          font-size: 0.8rem;
         }
 
         .menu-overlay {
@@ -367,14 +404,24 @@ export default function Header() {
             padding: 0 1rem;
           }
 
-          .header-logo {
-            height: 45px !important;
-            max-width: 180px;
+          .order-info {
+            gap: 1rem;
+            padding: 0 1rem;
           }
 
-          .order-now-header-btn {
-            padding: 12px 24px;
-            font-size: 1rem;
+          .order-item {
+            flex-direction: column;
+            gap: 0.25rem;
+            text-align: center;
+          }
+
+          .order-text {
+            font-size: 0.8rem;
+          }
+
+          .view-bag-btn {
+            padding: 10px 16px;
+            font-size: 0.9rem;
           }
 
           .menu-content {
@@ -397,29 +444,30 @@ export default function Header() {
             padding: 0 0.75rem;
           }
 
-          .header-logo {
-            height: 40px !important;
-            max-width: 160px;
+          .order-info {
+            gap: 0.5rem;
+            padding: 0 0.75rem;
           }
 
-          .order-now-header-btn {
-            padding: 10px 20px;
-            font-size: 0.9rem;
+          .order-item {
+            padding: 0.25rem;
+          }
+
+          .order-text {
+            font-size: 0.7rem;
+          }
+
+          .view-bag-btn {
+            padding: 8px 12px;
+            font-size: 0.8rem;
           }
 
           .menu-text {
             display: none;
           }
 
-          .cart-link {
-            width: 45px;
-            height: 45px;
-          }
-
-          .cart-badge {
-            width: 20px;
-            height: 20px;
-            font-size: 0.7rem;
+          .bag-text {
+            display: none;
           }
         }
       `}</style>
