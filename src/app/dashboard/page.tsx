@@ -7,6 +7,8 @@ import { PackOption, SelectedCookie } from '@/types';
 import CartSidebar from '@/components/CartSidebar';
 import Image from 'next/image';
 import Link from 'next/link';
+import Header from '@/components/dashboard/Header';
+import Footer from '@/components/dashboard/Footer';
 
 export default function ShopPage() {
   const { state, dispatch, addToCart } = useCart();
@@ -119,31 +121,7 @@ export default function ShopPage() {
 
   return (
     <div className="min-h-screen">
-      {/* HEB Branded Header */}
-      <header className="header">
-        <div className="container">
-          <div className="logo">
-            <Image 
-              src="/images/logos/heb-white-logo.png" 
-              alt="Happily Ever Bakers Logo" 
-              width={50} 
-              height={50}
-              priority
-            />
-            <h1>Happily Ever Bakers</h1>
-          </div>
-          <nav className="nav">
-            <a href="#home">Home</a>
-            <a href="#cookies">Cookies</a>
-            <a href="#about">About</a>
-            <Link href="/" className="nav-link">Dashboard</Link>
-          </nav>
-          <div className="cart-icon" onClick={() => setIsCartOpen(true)}>
-            <span className="cart-count">{state.items.reduce((sum, item) => sum + item.quantity, 0)}</span>
-            🛒
-          </div>
-        </div>
-      </header>
+      <Header />
 
       {/* HEB Hero Section */}
       <section className="hero" id="home">
@@ -319,35 +297,10 @@ export default function ShopPage() {
         </div>
       </main>
 
-      {/* Enhanced Footer */}
-      <footer className="footer">
-        <div className="container">
-          <div className="footer-content">
-            <div className="footer-section">
-              <h4>Happily Ever Bakers</h4>
-              <p>Artisan cookies made with love and premium ingredients. Fresh baked daily for your enjoyment.</p>
-            </div>
-            <div className="footer-section">
-              <h4>Contact Info</h4>
-              <p>📞 (555) 123-BAKE</p>
-              <p>✉️ hello@happilyeverbakers.com</p>
-              <p>📍 123 Sweet Street, Cookie City, CC 12345</p>
-            </div>
-            <div className="footer-section">
-              <h4>Ordering</h4>
-              <p>Order online, we'll invoice you</p>
-              <p>Fresh delivery within 24-48 hours</p>
-              <p>Custom orders welcome</p>
-            </div>
-          </div>
-          <div className="footer-bottom">
-            <p>© 2024 Happily Ever Bakers. All rights reserved.</p>
-          </div>
-        </div>
-      </footer>
 
       {/* Cart Sidebar */}
       <CartSidebar isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
+      <Footer />
     </div>
   );
 }

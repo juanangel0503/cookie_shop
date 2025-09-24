@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react';
 import { useCart } from '@/lib/cart-context';
 import { OrderData } from '@/types';
 import { useRouter } from 'next/navigation';
+import Header from '@/components/dashboard/Header';
+import Footer from '@/components/dashboard/Footer';
 
 export default function CheckoutPage() {
   const { state, clearCart, getTotalValue } = useCart();
@@ -137,19 +139,7 @@ export default function CheckoutPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="header">
-        <div className="container">
-          <div className="logo">
-            <h1>🍪 Happily Ever Bakers</h1>
-          </div>
-          <nav className="nav">
-            <a href="/">Home</a>
-            <a href="/#cookies">Cookies</a>
-            <a href="/#about">About</a>
-          </nav>
-        </div>
-      </header>
+      <Header />
 
       <div className="checkout-container">
         <a href="/" className="back-to-shop">← Back to Cookie Shop</a>
@@ -392,6 +382,7 @@ export default function CheckoutPage() {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

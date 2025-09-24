@@ -4,6 +4,8 @@ import { useSearchParams, useRouter } from 'next/navigation';
 import { cookieFlavors, packOptions } from '@/lib/data';
 import { SelectedCookie } from '@/types';
 import { useCart } from '@/lib/cart-context';
+import Header from '@/components/dashboard/Header';
+import Footer from '@/components/dashboard/Footer';
 
 function CustomizeInner() {
   const params = useSearchParams();
@@ -42,6 +44,7 @@ function CustomizeInner() {
 
   return (
     <div className="customize">
+      <Header />
       <div className="container">
         <h1 className="title">Customize your {pack.name}</h1>
         <p className="subtitle">Select exactly {pack.size} cookies. Remaining: {remaining}</p>
@@ -97,6 +100,7 @@ function CustomizeInner() {
         .qty button { width: 36px; height: 36px; border-radius: 9999px; background: var(--primary-pink); color:white; border:none; font-weight: 800; }
         .add { margin-top: 1.5rem; width: 100%; padding: 14px; border-radius: 9999px; background: var(--gradient-primary); color:white; border:none; font-weight: 800; }
       `}</style>
+      <Footer />
     </div>
   );
 }
