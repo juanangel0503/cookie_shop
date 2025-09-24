@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import Header from '@/components/dashboard/Header';
+import Footer from '@/components/dashboard/Footer';
 
 // Mock location data - in real app this would come from API
 const locations = [
@@ -183,6 +184,7 @@ export default function LocationSelection() {
           </div>
         </div>
       </main>
+      <Footer />
 
       <style jsx>{`
         .location-page {

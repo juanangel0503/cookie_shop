@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import AnimatedCanvasImage from '@/components/AnimatedCanvasImage';
 import Header from '@/components/dashboard/Header';
+import Footer from '@/components/dashboard/Footer';
 
 export default function OrderLanding() {
   return (
@@ -46,6 +47,7 @@ export default function OrderLanding() {
           </div>
         </div>
       </main>
+      <Footer />
 
       <style jsx>{`
         .order-page {
