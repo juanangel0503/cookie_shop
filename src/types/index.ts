@@ -69,3 +69,31 @@ export interface ApiResponse<T> {
   data?: T;
   error?: string;
 }
+
+// GHL Product types
+export interface GHLProduct {
+  id: string;
+  name: string;
+  description: string;
+  price: number;
+  category: string;
+  image?: string;
+  sku?: string;
+  stock?: number;
+  isActive: boolean;
+  customFields?: Record<string, any>;
+}
+
+export interface GHLProductResponse {
+  success: boolean;
+  products?: GHLProduct[];
+  error?: string;
+}
+
+// Product categories
+export interface ProductCategory {
+  id: string;
+  name: string;
+  description?: string;
+  parentId?: string;
+}

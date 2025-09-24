@@ -1,14 +1,96 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import Header from '@/components/dashboard/Header';
 import Footer from '@/components/dashboard/Footer';
 import CartSidebar from '@/components/CartSidebar';
+import { GHLProduct } from '@/types';
 
 export default function OrderMenu() {
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [products, setProducts] = useState<GHLProduct[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
+  const fetchProducts = async () => {
+    try {
+      setLoading(true);
+      const response = await fetch('/api/products');
+      const data = await response.json();
+      
+      if (data.success && data.products) {
+        setProducts(data.products);
+      } else {
+        setError(data.error || 'Failed to fetch products');
+      }
+    } catch (err) {
+      setError('Failed to fetch products');
+      console.error('Error fetching products:', err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const getProductLink = (product: GHLProduct) => {
+    // Determine pack type based on product name or custom fields
+    if (product.name.toLowerCase().includes('single')) {
+      return '/order/customize?pack=single';
+    } else if (product.name.toLowerCase().includes('4-pack') || product.customFields?.size === '4-pack') {
+      return '/order/customize?pack=4pack';
+    } else if (product.name.toLowerCase().includes('6-pack') || product.customFields?.size === '6-pack') {
+      return '/order/customize?pack=6pack';
+    } else if (product.name.toLowerCase().includes('12-pack') || product.customFields?.size === '12-pack') {
+      return '/order/customize?pack=12pack';
+    }
+    return '/order/customize?pack=single';
+  };
+
+  const getSavingsText = (product: GHLProduct) => {
+    return product.customFields?.savings || '';
+  };
+
+  if (loading) {
+    return (
+      <div className="menu-page">
+        <Header />
+        <main className="menu-main">
+          <div className="menu-container">
+            <div className="loading-container">
+              <div className="loading-spinner"></div>
+              <h2>Loading products...</h2>
+            </div>
+          </div>
+        </main>
+        <Footer />
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="menu-page">
+        <Header />
+        <main className="menu-main">
+          <div className="menu-container">
+            <div className="error-container">
+              <h2>Error loading products</h2>
+              <p>{error}</p>
+              <button onClick={fetchProducts} className="retry-btn">
+                Try Again
+              </button>
+            </div>
+          </div>
+        </main>
+        <Footer />
+      </div>
+    );
+  }
 
   return (
     <div className="menu-page">
@@ -17,74 +99,39 @@ export default function OrderMenu() {
         <div className="menu-container">
           <h1 className="menu-title">Large Desserts</h1>
           <div className="dessert-grid">
-            {/* Single Cookie */}
-            <Link href={`/order/customize?pack=single`} className="dessert-card">
-              <div className="card-image">
-                <div className="image-placeholder">
-                  <span>product_image</span>
+            {products.map((product) => (
+              <Link 
+                key={product.id} 
+                href={getProductLink(product)} 
+                className="dessert-card"
+              >
+                <div className="card-image">
+                  {product.image ? (
+                    <Image
+                      src={product.image}
+                      alt={product.name}
+                      width={200}
+                      height={200}
+                      className="product-image"
+                    />
+                  ) : (
+                    <div className="image-placeholder">
+                      <span>product_image</span>
+                    </div>
+                  )}
+                  {getSavingsText(product) && (
+                    <div className="savings-tag">{getSavingsText(product)}</div>
+                  )}
                 </div>
-              </div>
-              <div className="card-content">
-                <h3 className="dessert-name">Single</h3>
-                <div className="dessert-price">$4.99</div>
-              </div>
-            </Link>
-
-            {/* Chocolate Chip 4-Pack */}
-            <Link href={`/order/customize?pack=4pack`} className="dessert-card">
-              <div className="card-image">
-                <div className="image-placeholder">
-                  <span>product_image</span>
+                <div className="card-content">
+                  <h3 className="dessert-name">{product.name}</h3>
+                  <div className="dessert-price">${product.price.toFixed(2)}</div>
+                  {product.description && (
+                    <p className="product-description">{product.description}</p>
+                  )}
                 </div>
-                <div className="savings-tag">Save 49%</div>
-              </div>
-              <div className="card-content">
-                <h3 className="dessert-name">Chocolate Chip 4-Pack</h3>
-                <div className="dessert-price">$9.99</div>
-              </div>
-            </Link>
-
-            {/* Mixed 4-Pack */}
-            <Link href={`/order/customize?pack=4pack`} className="dessert-card">
-              <div className="card-image">
-                <div className="image-placeholder">
-                  <span>product_image</span>
-                </div>
-                <div className="savings-tag">Save 4%</div>
-              </div>
-              <div className="card-content">
-                <h3 className="dessert-name">4-Pack</h3>
-                <div className="dessert-price">$18.99</div>
-              </div>
-            </Link>
-
-            {/* Mixed 6-Pack */}
-            <Link href={`/order/customize?pack=6pack`} className="dessert-card">
-              <div className="card-image">
-                <div className="image-placeholder">
-                  <span>product_image</span>
-                </div>
-                <div className="savings-tag">Save 36%</div>
-              </div>
-              <div className="card-content">
-                <h3 className="dessert-name">6-Pack</h3>
-                <div className="dessert-price">$18.99</div>
-              </div>
-            </Link>
-
-            {/* Mixed 12-Pack */}
-            <Link href={`/order/customize?pack=12pack`} className="dessert-card">
-              <div className="card-image">
-                <div className="image-placeholder">
-                  <span>product_image</span>
-                </div>
-                <div className="savings-tag">Save 18%</div>
-              </div>
-              <div className="card-content">
-                <h3 className="dessert-name">12-Pack</h3>
-                <div className="dessert-price">$48.99</div>
-              </div>
-            </Link>
+              </Link>
+            ))}
           </div>
         </div>
       </main>
@@ -118,6 +165,52 @@ export default function OrderMenu() {
           text-align: left;
         }
 
+        .loading-container,
+        .error-container {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          min-height: 400px;
+          text-align: center;
+        }
+
+        .loading-spinner {
+          width: 40px;
+          height: 40px;
+          border: 4px solid #f3f3f3;
+          border-top: 4px solid rgb(255 185 205/var(--tw-bg-opacity));
+          border-radius: 50%;
+          animation: spin 1s linear infinite;
+          margin-bottom: 1rem;
+        }
+
+        @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+
+        .error-container h2 {
+          color: #e91e63;
+          margin-bottom: 1rem;
+        }
+
+        .retry-btn {
+          background: rgb(255 185 205/var(--tw-bg-opacity));
+          color: white;
+          border: none;
+          padding: 12px 24px;
+          border-radius: 8px;
+          font-weight: 600;
+          cursor: pointer;
+          transition: all 0.3s ease;
+        }
+
+        .retry-btn:hover {
+          background: rgb(255 185 205/var(--tw-bg-opacity));
+          transform: translateY(-1px);
+        }
+
         .dessert-grid {
           display: grid;
           grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -148,6 +241,12 @@ export default function OrderMenu() {
           display: flex;
           align-items: center;
           justify-content: center;
+        }
+
+        .product-image {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
         }
 
         .image-placeholder {
@@ -187,6 +286,13 @@ export default function OrderMenu() {
           font-size: 1.5rem;
           font-weight: 700;
           color: #2c2c2c;
+          margin-bottom: 0.5rem;
+        }
+
+        .product-description {
+          font-size: 0.9rem;
+          color: #666;
+          line-height: 1.4;
         }
 
         @media (max-width: 768px) {
