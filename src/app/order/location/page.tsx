@@ -110,7 +110,7 @@ export default function LocationSelection() {
   const handleLocationSelect = (locationId: number) => {
     setSelectedLocation(locationId);
     // In real app, this would navigate to menu with location context
-    console.log('Selected location:', locationId);
+    window.location.href = `/order/menu?location=${locationId}`;
   };
 
   return (
