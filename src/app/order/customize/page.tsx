@@ -83,7 +83,7 @@ function CustomizeInner() {
       </div>
 
       <style jsx>{`
-        .customize { padding: 3rem 2rem; padding-top: 6rem; }
+        .customize { padding: 3rem 2rem; padding-top: 6rem; padding-bottom: 2rem; }
         .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
         .title { font-size: 2rem; font-weight: 800; }
         .subtitle { color: var(--text-light); margin: .5rem 0 2rem; }
@@ -98,7 +98,7 @@ function CustomizeInner() {
         .desc { color: var(--text-light); font-size: .9rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .qty { display:flex; gap: 8px; align-items:center; }
         .qty button { width: 36px; height: 36px; border-radius: 9999px; background: var(--primary-pink); color:white; border:none; font-weight: 800; }
-        .add { margin-top: 1.5rem; width: 100%; padding: 14px; border-radius: 9999px; background: var(--gradient-primary); color:white; border:none; font-weight: 800; }
+        .add { margin-top: 1.5rem; margin-bottom: 3rem; width: 100%; padding: 14px; border-radius: 9999px; background: var(--gradient-primary); color:white; border:none; font-weight: 800; }
       `}</style>
       <Footer />
     </div>
