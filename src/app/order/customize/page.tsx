@@ -83,7 +83,7 @@ function CustomizeInner() {
       </div>
 
       <style jsx>{`
-        .customize { padding: 3rem 0; }
+        .customize { padding: 3rem 0; padding-top: 6rem; }
         .container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
         .title { font-size: 2rem; font-weight: 800; }
         .subtitle { color: var(--text-light); margin: .5rem 0 2rem; }
