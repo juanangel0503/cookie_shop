@@ -141,7 +141,7 @@ export default function CheckoutPage() {
     <div className="min-h-screen bg-gray-50">
       <Header />
 
-      <div className="checkout-container">
+      <div className="checkout-container" style={{ margin: "0 2rem", maxWidth: "1200px", marginLeft: "auto", marginRight: "auto" }}>
         <a href="/" className="back-to-shop">← Back to Cookie Shop</a>
         
         <div className="checkout-header">

@@ -120,7 +120,7 @@ export default function ShopPage() {
   };
 
   return (
-    <div className="min-h-screen" style={{ paddingTop: "80px" }}>
+    <div className="min-h-screen" style={{ paddingTop: "80px", paddingLeft: "2rem", paddingRight: "2rem" }}>
       <Header />
 
       {/* HEB Hero Section */}
