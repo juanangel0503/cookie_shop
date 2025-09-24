@@ -92,23 +92,6 @@ export default function CartSidebar({ isOpen, onClose }: CartSidebarProps) {
             ))}
           </div>
 
-          {/* Missing Something Section */}
-          <div className="missing-section">
-            <h3>Missing Something?</h3>
-            <div className="suggested-item">
-              <div className="suggested-image">
-                <div className="image-placeholder">
-                  <span>Cool Cutter</span>
-                </div>
-              </div>
-              <div className="suggested-details">
-                <h4>Cookie Cutter</h4>
-                <p className="suggested-price">$4.99</p>
-              </div>
-              <button className="add-suggested-btn">+</button>
-            </div>
-          </div>
-
           {/* Subtotal */}
           <div className="subtotal-section">
             <div className="subtotal-row">
@@ -312,69 +295,6 @@ export default function CartSidebar({ isOpen, onClose }: CartSidebarProps) {
           text-align: center;
         }
 
-        .missing-section {
-          margin-bottom: 2rem;
-        }
-
-        .missing-section h3 {
-          font-size: 1.1rem;
-          font-weight: 600;
-          color: #2c2c2c;
-          margin: 0 0 1rem 0;
-        }
-
-        .suggested-item {
-          display: flex;
-          align-items: center;
-          gap: 1rem;
-          padding: 1rem;
-          background: #f8f9fa;
-          border-radius: 8px;
-        }
-
-        .suggested-image {
-          width: 50px;
-          height: 50px;
-        }
-
-        .suggested-details {
-          flex: 1;
-        }
-
-        .suggested-details h4 {
-          font-size: 0.9rem;
-          font-weight: 600;
-          color: #2c2c2c;
-          margin: 0 0 0.25rem 0;
-        }
-
-        .suggested-price {
-          font-size: 0.9rem;
-          font-weight: 600;
-          color: #2c2c2c;
-          margin: 0;
-        }
-
-        .add-suggested-btn {
-          width: 32px;
-          height: 32px;
-          border: 2px solid rgb(255 185 205/var(--tw-bg-opacity));
-          background: white;
-          border-radius: 50%;
-          cursor: pointer;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          font-weight: 600;
-          color: rgb(255 185 205/var(--tw-bg-opacity));
-          transition: all 0.3s ease;
-        }
-
-        .add-suggested-btn:hover {
-          background: rgb(255 185 205/var(--tw-bg-opacity));
-          color: white;
-        }
-
         .subtotal-section {
           margin-bottom: 1.5rem;
         }
@@ -412,7 +332,7 @@ export default function CartSidebar({ isOpen, onClose }: CartSidebarProps) {
           display: block;
           width: 100%;
           padding: 16px;
-          background: #2c2c2c;
+          background: rgb(255 185 205/var(--tw-bg-opacity));
           color: white;
           text-decoration: none;
           border-radius: 8px;
@@ -421,11 +341,14 @@ export default function CartSidebar({ isOpen, onClose }: CartSidebarProps) {
           text-align: center;
           transition: all 0.3s ease;
           margin-top: auto;
+          border: none;
+          cursor: pointer;
         }
 
         .checkout-btn:hover {
-          background: #1a1a1a;
+          background: rgb(255 185 205/var(--tw-bg-opacity));
           transform: translateY(-1px);
+          box-shadow: 0 4px 15px rgba(255, 185, 205, 0.3);
         }
 
         @media (max-width: 480px) {
