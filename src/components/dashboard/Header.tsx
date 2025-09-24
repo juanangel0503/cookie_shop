@@ -7,7 +7,7 @@ import { useCart } from '@/lib/cart-context';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { state } = useCart();
+  const { state, clearCart } = useCart();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -15,6 +15,12 @@ export default function Header() {
 
   const getTotalItems = () => {
     return state.items.reduce((total, item) => total + item.quantity, 0);
+  };
+
+  const handleClearCart = () => {
+    if (confirm('Are you sure you want to clear your cart?')) {
+      clearCart();
+    }
   };
 
   return (
@@ -77,6 +83,11 @@ export default function Header() {
             <Link href="/" className="menu-link" onClick={toggleMenu}>Home</Link>
             <Link href="/order" className="menu-link" onClick={toggleMenu}>Order</Link>
             <Link href="/order/location" className="menu-link" onClick={toggleMenu}>Locations</Link>
+            {getTotalItems() > 0 && (
+              <button className="clear-cart-btn" onClick={handleClearCart}>
+                🗑️ Clear Cart ({getTotalItems()} items)
+              </button>
+            )}
           </nav>
         </div>
       </div>
@@ -213,6 +224,7 @@ export default function Header() {
           font-size: 0.8rem;
           font-weight: 600;
           border: 2px solid white;
+          box-shadow: 0 2px 8px rgba(233, 30, 99, 0.3);
         }
 
         .order-now-header-btn {
@@ -332,6 +344,24 @@ export default function Header() {
           transform: translateX(10px);
         }
 
+        .clear-cart-btn {
+          background: #e91e63;
+          color: white;
+          border: none;
+          padding: 12px 20px;
+          border-radius: 8px;
+          font-size: 1rem;
+          font-weight: 600;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          margin-top: 1rem;
+        }
+
+        .clear-cart-btn:hover {
+          background: #c2185b;
+          transform: translateY(-1px);
+        }
+
         @media (max-width: 768px) {
           .header-container {
             padding: 0 1rem;
@@ -379,6 +409,17 @@ export default function Header() {
 
           .menu-text {
             display: none;
+          }
+
+          .cart-link {
+            width: 45px;
+            height: 45px;
+          }
+
+          .cart-badge {
+            width: 20px;
+            height: 20px;
+            font-size: 0.7rem;
           }
         }
       `}</style>
