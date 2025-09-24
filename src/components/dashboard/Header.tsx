@@ -29,6 +29,8 @@ export default function Header() {
     }
   };
 
+  const hasItems = getTotalItems() > 0;
+
   return (
     <>
       <header className="dashboard-header">
@@ -62,15 +64,23 @@ export default function Header() {
           <div className="header-right">
             <button className="cart-link" onClick={toggleCart}>
               <div className="cart-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                  <path fill="currentColor" d="M7 4V2C7 1.45 7.45 1 8 1H16C16.55 1 17 1.45 17 2V4H20C20.55 4 21 4.45 21 5S20.55 6 20 6H19V19C19 20.1 18.1 21 17 21H7C5.9 21 5 20.1 5 19V6H4C3.45 6 3 5.55 3 5S3.45 4 4 4H7ZM9 3V4H15V3H9ZM7 6V19H17V6H7Z"/>
+                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="none" viewBox="0 0 24 24" className="text-white size-8">
+                  <path fill="currentColor" d="m20.984 17.715-.667-6.999C20.17 9.176 18.999 8 17.331 8h-.58V7c0-2.62-2.13-4.75-4.75-4.75S7.251 4.38 7.251 7v1h-.58c-1.668 0-2.84 1.176-2.986 2.716l-.667 6.999C2.85 19.476 4.004 21 6.004 21h11.997c1.997 0 3.151-1.523 2.983-3.285M8.75 7c0-1.79 1.46-3.25 3.25-3.25S15.25 5.21 15.25 7v1h-6.5z"></path>
                 </svg>
                 {getTotalItems() > 0 && (
                   <span className="cart-badge">{getTotalItems()}</span>
                 )}
               </div>
             </button>
-            <Link href="/order"><button className="order-now-header-btn">Order Now</button></Link>
+            {hasItems ? (
+              <button className="view-bag-btn" onClick={toggleCart}>
+                View Bag
+              </button>
+            ) : (
+              <Link href="/order">
+                <button className="order-now-header-btn">Order Now</button>
+              </Link>
+            )}
           </div>
         </div>
       </header>
@@ -258,6 +268,26 @@ export default function Header() {
           box-shadow: 0 8px 25px rgba(0,0,0,0.3);
         }
 
+        .view-bag-btn {
+          background: #2c2c2c;
+          color: white;
+          border: none;
+          padding: 14px 28px;
+          border-radius: 30px;
+          font-size: 1.1rem;
+          font-weight: 600;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+          letter-spacing: 0.5px;
+        }
+
+        .view-bag-btn:hover {
+          background: #1a1a1a;
+          transform: translateY(-2px);
+          box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+
         .menu-overlay {
           position: fixed;
           top: 0;
@@ -383,7 +413,8 @@ export default function Header() {
             max-width: 180px;
           }
 
-          .order-now-header-btn {
+          .order-now-header-btn,
+          .view-bag-btn {
             padding: 12px 24px;
             font-size: 1rem;
           }
@@ -413,7 +444,8 @@ export default function Header() {
             max-width: 160px;
           }
 
-          .order-now-header-btn {
+          .order-now-header-btn,
+          .view-bag-btn {
             padding: 10px 20px;
             font-size: 0.9rem;
           }
