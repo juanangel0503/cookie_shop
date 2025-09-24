@@ -206,7 +206,7 @@ export default function CartSidebar({ isOpen, onClose }: CartSidebarProps) {
         .image-placeholder {
           width: 100%;
           height: 100%;
-          background: rgb(255 185 205/var(--tw-bg-opacity));
+          background: #1a1a1a;
           border-radius: 8px;
           display: flex;
           align-items: center;
@@ -284,7 +284,7 @@ export default function CartSidebar({ isOpen, onClose }: CartSidebarProps) {
 
         .qty-btn:hover {
           border-color: rgb(255 185 205/var(--tw-bg-opacity));
-          background: rgb(255 185 205/var(--tw-bg-opacity));
+          background: #1a1a1a;
           color: white;
         }
 
@@ -317,7 +317,7 @@ export default function CartSidebar({ isOpen, onClose }: CartSidebarProps) {
           align-items: center;
           gap: 0.75rem;
           padding: 1rem;
-          background: rgb(255 185 205/var(--tw-bg-opacity));
+          background: #1a1a1a;
           border-radius: 8px;
           color: white;
           font-size: 0.9rem;
@@ -332,7 +332,7 @@ export default function CartSidebar({ isOpen, onClose }: CartSidebarProps) {
           display: block;
           width: 100%;
           padding: 16px;
-          background: rgb(255 185 205/var(--tw-bg-opacity));
+          background: #1a1a1a;
           color: white;
           text-decoration: none;
           border-radius: 8px;
@@ -346,7 +346,7 @@ export default function CartSidebar({ isOpen, onClose }: CartSidebarProps) {
         }
 
         .checkout-btn:hover {
-          background: rgb(255 185 205/var(--tw-bg-opacity));
+          background: #1a1a1a;
           transform: translateY(-1px);
           box-shadow: 0 4px 15px rgba(255, 185, 205, 0.3);
         }
