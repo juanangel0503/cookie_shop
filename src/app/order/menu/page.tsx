@@ -42,14 +42,15 @@ export default function OrderMenu() {
           
           <div className="dessert-cards">
             {/* Single Cookie */}
-            <div className="dessert-card">
+            <Link href="/order/customize?pack=single" className="dessert-card">
               <div className="card-image">
                 <Image
-                  src="/images/cookies/single-cookie.jpg"
-                  alt="Single Cookie"
+                  src="/images/products/Chocolate-chip.png"
+                  alt="Single Chocolate Chip Cookie"
                   width={200}
                   height={200}
                   className="dessert-img"
+                  priority
                 />
                 <div className="image-overlay"></div>
               </div>
@@ -57,13 +58,13 @@ export default function OrderMenu() {
                 <h3 className="dessert-name">Single</h3>
                 <div className="dessert-price">$4.99</div>
               </div>
-            </div>
+            </Link>
 
             {/* Chocolate Chip 4-Pack */}
-            <div className="dessert-card">
+            <Link href="/order/customize?pack=4pack" className="dessert-card">
               <div className="card-image">
                 <Image
-                  src="/images/cookies/chocolate-chip-4pack.jpg"
+                  src="/images/products/chocolate-chip-horizontal.jpg"
                   alt="Chocolate Chip 4-Pack"
                   width={200}
                   height={200}
@@ -76,13 +77,13 @@ export default function OrderMenu() {
                 <h3 className="dessert-name">Chocolate Chip 4-Pack</h3>
                 <div className="dessert-price">$9.99</div>
               </div>
-            </div>
+            </Link>
 
             {/* Mixed 4-Pack */}
-            <div className="dessert-card">
+            <Link href="/order/customize?pack=4pack" className="dessert-card">
               <div className="card-image">
                 <Image
-                  src="/images/cookies/mixed-4pack.jpg"
+                  src="/images/products/variety-horizontal.jpg"
                   alt="Mixed 4-Pack"
                   width={200}
                   height={200}
@@ -95,13 +96,13 @@ export default function OrderMenu() {
                 <h3 className="dessert-name">4-Pack</h3>
                 <div className="dessert-price">$18.99</div>
               </div>
-            </div>
+            </Link>
 
             {/* Mixed 6-Pack */}
-            <div className="dessert-card">
+            <Link href="/order/customize?pack=6pack" className="dessert-card">
               <div className="card-image">
                 <Image
-                  src="/images/cookies/mixed-6pack.jpg"
+                  src="/images/products/cookie-cream-vertical.jpg"
                   alt="Mixed 6-Pack"
                   width={200}
                   height={200}
@@ -114,7 +115,7 @@ export default function OrderMenu() {
                 <h3 className="dessert-name">6-Pack</h3>
                 <div className="dessert-price">$18.99</div>
               </div>
-            </div>
+            </Link>
           </div>
         </div>
       </main>
@@ -211,6 +212,9 @@ export default function OrderMenu() {
           cursor: pointer;
           position: relative;
           overflow: hidden;
+          text-decoration: none;
+          color: inherit;
+          display: block;
         }
 
         .dessert-card:hover {
@@ -226,6 +230,7 @@ export default function OrderMenu() {
           border-radius: 12px;
           overflow: hidden;
           background: white;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
         .dessert-img {
@@ -233,6 +238,11 @@ export default function OrderMenu() {
           height: 100%;
           object-fit: cover;
           border-radius: 12px;
+          transition: transform 0.3s ease;
+        }
+
+        .dessert-card:hover .dessert-img {
+          transform: scale(1.05);
         }
 
         .image-overlay {
