@@ -2,10 +2,11 @@
 
 :root {
   /* HEB Brand Colors - Pink and White Only */
-  --primary-pink: #E91E63; /* Happily Ever Bakers Pink */
+  --tw-bg-opacity: 1;
+  --primary-pink: rgb(255 185 205/var(--tw-bg-opacity)); /* Happily Ever Bakers Pink */
   --tw-bg-opacity: 1;
   --primary-pink-light: rgb(255 185 205/var(--tw-bg-opacity));
-  --primary-pink-dark: #C2185B;
+  --primary-pink-dark: rgb(255 185 205/var(--tw-bg-opacity));
 
   /* Gradients - Pink Only */
   --gradient-primary: linear-gradient(135deg, var(--primary-pink), var(--primary-pink-dark));

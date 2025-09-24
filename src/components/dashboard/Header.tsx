@@ -71,6 +71,7 @@ export default function Header() {
 
       <style jsx>{`
         .dashboard-header {
+          --tw-bg-opacity: 1;
           position: fixed;
           top: 0;
           left: 0;
@@ -234,7 +235,7 @@ export default function Header() {
         }
 
         .close-menu {
-          background: #E91E63;
+          background: rgb(255 185 205/var(--tw-bg-opacity));
           color: white;
           border: none;
           width: 35px;
@@ -250,7 +251,7 @@ export default function Header() {
         }
 
         .close-menu:hover {
-          background: #C2185B;
+          background: rgb(255 185 205/var(--tw-bg-opacity));
           transform: scale(1.1);
           box-shadow: 0 6px 20px rgba(233, 30, 99, 0.4);
         }
@@ -273,8 +274,8 @@ export default function Header() {
         }
 
         .menu-link:hover {
-          color: #E91E63;
-          border-bottom-color: #E91E63;
+          color: rgb(255 185 205/var(--tw-bg-opacity));
+          border-bottom-color: rgb(255 185 205/var(--tw-bg-opacity));
           transform: translateX(10px);
         }
 

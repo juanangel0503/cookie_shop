@@ -79,6 +79,7 @@ export default function FeaturedCookies() {
 
       <style jsx>{`
         .featured-cookies {
+          --tw-bg-opacity: 1;
           padding: 6rem 0;
           background: white;
         }
@@ -105,7 +106,7 @@ export default function FeaturedCookies() {
         }
 
         .cookie-card.featured-main {
-          background: linear-gradient(135deg, #E91E63 0%, #C2185B 100%);
+          background: linear-gradient(135deg, rgb(255 185 205/var(--tw-bg-opacity)) 0%, rgb(255 185 205/var(--tw-bg-opacity)) 100%);
           color: white;
         }
 
@@ -113,7 +114,7 @@ export default function FeaturedCookies() {
           position: absolute;
           top: 2.5rem;
           left: 2.5rem;
-          background: #E91E63;
+          background: rgb(255 185 205/var(--tw-bg-opacity));
           color: white;
           padding: 12px 20px;
           border-radius: 25px;
@@ -184,8 +185,8 @@ export default function FeaturedCookies() {
 
         .learn-more-btn {
           background: transparent;
-          border: 2px solid #E91E63;
-          color: #E91E63;
+          border: 2px solid rgb(255 185 205/var(--tw-bg-opacity));
+          color: rgb(255 185 205/var(--tw-bg-opacity));
           padding: 16px 32px;
           border-radius: 30px;
           font-size: 1.1rem;
@@ -201,7 +202,7 @@ export default function FeaturedCookies() {
         }
 
         .learn-more-btn:hover {
-          background: #E91E63;
+          background: rgb(255 185 205/var(--tw-bg-opacity));
           color: white;
           transform: translateY(-3px);
           box-shadow: 0 8px 25px rgba(233, 30, 99, 0.3);
@@ -209,11 +210,11 @@ export default function FeaturedCookies() {
 
         .featured-main .learn-more-btn:hover {
           background: white;
-          color: #E91E63;
+          color: rgb(255 185 205/var(--tw-bg-opacity));
         }
 
         .order-now-btn {
-          background: #E91E63;
+          background: rgb(255 185 205/var(--tw-bg-opacity));
           border: none;
           color: white;
           padding: 16px 32px;
@@ -228,18 +229,18 @@ export default function FeaturedCookies() {
 
         .featured-main .order-now-btn {
           background: white;
-          color: #E91E63;
+          color: rgb(255 185 205/var(--tw-bg-opacity));
         }
 
         .order-now-btn:hover {
-          background: #C2185B;
+          background: rgb(255 185 205/var(--tw-bg-opacity));
           transform: translateY(-3px);
           box-shadow: 0 8px 25px rgba(233, 30, 99, 0.4);
         }
 
         .featured-main .order-now-btn:hover {
           background: rgba(255, 255, 255, 0.9);
-          color: #E91E63;
+          color: rgb(255 185 205/var(--tw-bg-opacity));
         }
 
         @media (max-width: 1024px) {
@@ -267,6 +268,7 @@ export default function FeaturedCookies() {
 
         @media (max-width: 768px) {
           .featured-cookies {
+          --tw-bg-opacity: 1;
             padding: 4rem 0;
           }
 

@@ -103,6 +103,7 @@ export default function Footer() {
       <style jsx>{`
         .dashboard-footer {
           --tw-bg-opacity: 1;
+          --tw-bg-opacity: 1;
           background: rgb(255 185 205/var(--tw-bg-opacity));
           color: #2c2c2c;
           padding: 4rem 0 2rem;
@@ -157,7 +158,7 @@ export default function Footer() {
         }
 
         .nav-link:hover {
-          color: #E91E63;
+          color: rgb(255 185 205/var(--tw-bg-opacity));
           transform: translateX(5px);
         }
 
@@ -181,7 +182,7 @@ export default function Footer() {
         }
 
         .social-link:hover {
-          color: #E91E63;
+          color: rgb(255 185 205/var(--tw-bg-opacity));
           transform: translateY(-3px);
           background: rgba(255, 255, 255, 0.2);
           box-shadow: 0 8px 25px rgba(233, 30, 99, 0.2);
@@ -233,7 +234,7 @@ export default function Footer() {
         }
 
         .legal-link:hover {
-          color: #E91E63;
+          color: rgb(255 185 205/var(--tw-bg-opacity));
         }
 
         .separator {

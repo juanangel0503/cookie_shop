@@ -156,6 +156,7 @@ export default function HeroCarousel() {
 
       <style jsx>{`
         .hero-carousel {
+          --tw-bg-opacity: 1;
           position: relative;
           width: 100%;
           height: 100vh;
@@ -258,7 +259,7 @@ export default function HeroCarousel() {
         }
 
         .week-label {
-          background: #E91E63;
+          background: rgb(255 185 205/var(--tw-bg-opacity));
           color: var(--text-dark);
           padding: 12px 20px;
           border-radius: 25px;
@@ -303,7 +304,7 @@ export default function HeroCarousel() {
           align-items: center;
           justify-content: center;
           cursor: pointer;
-          color: #E91E63;
+          color: rgb(255 185 205/var(--tw-bg-opacity));
           box-shadow: 0 8px 25px rgba(0,0,0,0.15);
           transition: all 0.3s ease;
           z-index: 10;
@@ -395,6 +396,7 @@ export default function HeroCarousel() {
 
         @media (max-width: 768px) {
           .hero-carousel {
+          --tw-bg-opacity: 1;
             min-height: 700px;
           }
 
