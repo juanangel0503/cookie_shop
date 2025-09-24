@@ -3,12 +3,18 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useCart } from '@/lib/cart-context';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { state } = useCart();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  const getTotalItems = () => {
+    return state.items.reduce((total, item) => total + item.quantity, 0);
   };
 
   return (
@@ -42,6 +48,16 @@ export default function Header() {
           </div>
           
           <div className="header-right">
+            <Link href="/checkout" className="cart-link">
+              <div className="cart-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                  <path fill="currentColor" d="M7 4V2C7 1.45 7.45 1 8 1H16C16.55 1 17 1.45 17 2V4H20C20.55 4 21 4.45 21 5S20.55 6 20 6H19V19C19 20.1 18.1 21 17 21H7C5.9 21 5 20.1 5 19V6H4C3.45 6 3 5.55 3 5S3.45 4 4 4H7ZM9 3V4H15V3H9ZM7 6V19H17V6H7Z"/>
+                </svg>
+                {getTotalItems() > 0 && (
+                  <span className="cart-badge">{getTotalItems()}</span>
+                )}
+              </div>
+            </Link>
             <Link href="/order"><button className="order-now-header-btn">Order Now</button></Link>
           </div>
         </div>
@@ -155,7 +171,48 @@ export default function Header() {
           display: flex;
           align-items: center;
           justify-content: flex-end;
+          gap: 1rem;
           flex: 1;
+        }
+
+        .cart-link {
+          position: relative;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 50px;
+          height: 50px;
+          background: rgba(255, 255, 255, 0.2);
+          border-radius: 50%;
+          transition: all 0.3s ease;
+          text-decoration: none;
+        }
+
+        .cart-link:hover {
+          background: rgba(255, 255, 255, 0.3);
+          transform: translateY(-2px);
+        }
+
+        .cart-icon {
+          color: #2c2c2c;
+          font-size: 1.5rem;
+        }
+
+        .cart-badge {
+          position: absolute;
+          top: -5px;
+          right: -5px;
+          background: #e91e63;
+          color: white;
+          border-radius: 50%;
+          width: 24px;
+          height: 24px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 0.8rem;
+          font-weight: 600;
+          border: 2px solid white;
         }
 
         .order-now-header-btn {

@@ -40,15 +40,16 @@ export interface OrderData {
   lastName: string;
   email: string;
   phone: string;
-  deliveryAddress: string;
-  city: string;
-  zipCode: string;
+  deliveryAddress?: string;
+  city?: string;
+  zipCode?: string;
   deliveryDate?: string;
   specialInstructions?: string;
   items: CartItem[];
   orderDate: string;
   totalItems: number;
   totalValue: number;
+  tip?: number;
   orderNumber?: string;
 }
 
