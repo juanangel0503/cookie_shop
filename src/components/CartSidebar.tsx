@@ -157,7 +157,7 @@ export default function CartSidebar({ isOpen, onClose }: CartSidebarProps) {
         .cart-header h2 {
           font-size: 1.5rem;
           font-weight: 700;
-          color: #2c2c2c;
+          color: black;
           margin: 0;
         }
 
@@ -168,6 +168,7 @@ export default function CartSidebar({ isOpen, onClose }: CartSidebarProps) {
           padding: 0.5rem;
           border-radius: 50%;
           transition: background-color 0.3s ease;
+          color: black;
         }
 
         .close-btn:hover {
@@ -206,7 +207,7 @@ export default function CartSidebar({ isOpen, onClose }: CartSidebarProps) {
         .image-placeholder {
           width: 100%;
           height: 100%;
-          background: #1a1a1a;
+          background: rgb(255 185 205/var(--tw-bg-opacity));
           border-radius: 8px;
           display: flex;
           align-items: center;
@@ -225,13 +226,13 @@ export default function CartSidebar({ isOpen, onClose }: CartSidebarProps) {
         .item-details h3 {
           font-size: 1rem;
           font-weight: 600;
-          color: #2c2c2c;
+          color: black;
           margin: 0 0 0.25rem 0;
         }
 
         .item-price {
           font-weight: 600;
-          color: #2c2c2c;
+          color: black;
           margin: 0 0 0.25rem 0;
         }
 
@@ -259,7 +260,7 @@ export default function CartSidebar({ isOpen, onClose }: CartSidebarProps) {
         }
 
         .remove-btn:hover {
-          color: #e91e63;
+          color: rgb(255 185 205/var(--tw-bg-opacity));
         }
 
         .quantity-controls {
@@ -280,17 +281,18 @@ export default function CartSidebar({ isOpen, onClose }: CartSidebarProps) {
           justify-content: center;
           font-weight: 600;
           transition: all 0.3s ease;
+          color: black;
         }
 
         .qty-btn:hover {
           border-color: rgb(255 185 205/var(--tw-bg-opacity));
-          background: #1a1a1a;
+          background: rgb(255 185 205/var(--tw-bg-opacity));
           color: white;
         }
 
         .quantity {
           font-weight: 600;
-          color: #2c2c2c;
+          color: black;
           min-width: 20px;
           text-align: center;
         }
@@ -305,7 +307,7 @@ export default function CartSidebar({ isOpen, onClose }: CartSidebarProps) {
           align-items: center;
           font-size: 1.1rem;
           font-weight: 600;
-          color: #2c2c2c;
+          color: black;
         }
 
         .rewards-section {
@@ -317,7 +319,7 @@ export default function CartSidebar({ isOpen, onClose }: CartSidebarProps) {
           align-items: center;
           gap: 0.75rem;
           padding: 1rem;
-          background: #1a1a1a;
+          background: black;
           border-radius: 8px;
           color: white;
           font-size: 0.9rem;
@@ -332,7 +334,7 @@ export default function CartSidebar({ isOpen, onClose }: CartSidebarProps) {
           display: block;
           width: 100%;
           padding: 16px;
-          background: #1a1a1a;
+          background: rgb(255 185 205/var(--tw-bg-opacity));
           color: white;
           text-decoration: none;
           border-radius: 8px;
@@ -346,7 +348,7 @@ export default function CartSidebar({ isOpen, onClose }: CartSidebarProps) {
         }
 
         .checkout-btn:hover {
-          background: #1a1a1a;
+          background: rgb(255 185 205/var(--tw-bg-opacity));
           transform: translateY(-1px);
           box-shadow: 0 4px 15px rgba(255, 185, 205, 0.3);
         }
