@@ -58,13 +58,9 @@ export default function Header() {
           </div>
           
           <nav className="menu-nav">
-            <Link href="/" className="menu-link" onClick={toggleMenu}>Shop</Link>
-            <Link href="/" className="menu-link" onClick={toggleMenu}>Order</Link>
-                <Link href="/dashboard" className="menu-link" onClick={toggleMenu}>Dashboard</Link>
-            <a href="/locations" className="menu-link">Locations</a>
-            <a href="/catering" className="menu-link">Catering</a>
-            <a href="/gift-cards" className="menu-link">Gift Cards</a>
-            <a href="/merch" className="menu-link">Merch</a>
+            <Link href="/" className="menu-link" onClick={toggleMenu}>Home</Link>
+            <Link href="/order" className="menu-link" onClick={toggleMenu}>Order</Link>
+            <Link href="/order/location" className="menu-link" onClick={toggleMenu}>Locations</Link>
           </nav>
         </div>
       </div>
