@@ -5,11 +5,11 @@ import HeroCarousel from '@/components/dashboard/HeroCarousel';
 import FeaturedCookies from '@/components/dashboard/FeaturedCookies';
 import Footer from '@/components/dashboard/Footer';
 
-export default function DashboardPage() {
+export default function HomePage() {
   return (
-    <div className="dashboard-page">
+    <div className="home-page">
       <Header />
-      <main className="dashboard-main">
+      <main className="home-main">
         <HeroCarousel />
         <FeaturedCookies />
       </main>

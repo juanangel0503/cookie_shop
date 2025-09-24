@@ -110,7 +110,7 @@ export default function HeroCarousel() {
               </div>
               
               {/* Order Now Button */}
-              <Link href="/dashboard">
+              <Link href="/order">
                 <button className="order-now-btn">{carouselItems[currentIndex].ctaText}</button>
               </Link>
             </div>
