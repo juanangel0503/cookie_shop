@@ -138,10 +138,7 @@ export default function OrderMenu() {
                 </div>
                 <div className="card-content">
                   <h3 className="dessert-name">{product.name}</h3>
-                  <div className="dessert-price">${product.price.toFixed(2)}</div>
-                  {product.description && (
-                    <p className="product-description">{product.description}</p>
-                  )}
+                  {/* Removed price and description per request */}
                 </div>
               </Link>
             ))}
