@@ -25,7 +25,21 @@ export default function OrderMenu() {
       const data = await response.json();
       
       if (data.success && data.products) {
-        setProducts(data.products);
+        // Keep only 4, 6, 12 packs
+        const filtered = (data.products as GHLProduct[]).filter((product: GHLProduct) => {
+          const name = product.name.toLowerCase();
+          const size = String(product.customFields?.size || '').toLowerCase();
+          const isPackCategory = (product.category || '').toLowerCase() === 'packs';
+          const isValidSize =
+            name.includes('4-pack') ||
+            name.includes('6-pack') ||
+            name.includes('12-pack') ||
+            size === '4-pack' ||
+            size === '6-pack' ||
+            size === '12-pack';
+          return (isPackCategory && isValidSize) || isValidSize;
+        });
+        setProducts(filtered);
       } else {
         setError(data.error || 'Failed to fetch products');
       }
@@ -39,16 +53,15 @@ export default function OrderMenu() {
 
   const getProductLink = (product: GHLProduct) => {
     // Determine pack type based on product name or custom fields
-    if (product.name.toLowerCase().includes('single')) {
-      return '/order/customize?pack=single';
-    } else if (product.name.toLowerCase().includes('4-pack') || product.customFields?.size === '4-pack') {
+    if (product.name.toLowerCase().includes('4-pack') || product.customFields?.size === '4-pack') {
       return '/order/customize?pack=4pack';
     } else if (product.name.toLowerCase().includes('6-pack') || product.customFields?.size === '6-pack') {
       return '/order/customize?pack=6pack';
     } else if (product.name.toLowerCase().includes('12-pack') || product.customFields?.size === '12-pack') {
       return '/order/customize?pack=12pack';
     }
-    return '/order/customize?pack=single';
+    // Fallback to 4-pack if not determined
+    return '/order/customize?pack=4pack';
   };
 
   const getSavingsText = (product: GHLProduct) => {
