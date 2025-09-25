@@ -10,7 +10,10 @@ export class GHLProductsIntegration {
     this.apiKey = process.env.GHL_API_KEY || 'YOUR_GHL_API_KEY';
     this.locationId = process.env.GHL_LOCATION_ID || 'YOUR_LOCATION_ID';
     this.baseUrl = 'https://services.leadconnectorhq.com';
-    this.demoMode = process.env.NODE_ENV === 'development' || !this.apiKey.includes('YOUR_');
+    // Demo unless both credentials look real
+    const hasRealKey = !!process.env.GHL_API_KEY && !this.apiKey.startsWith('YOUR');
+    const hasRealLoc = !!process.env.GHL_LOCATION_ID && !this.locationId.startsWith('YOUR');
+    this.demoMode = !(hasRealKey && hasRealLoc);
   }
 
   // Fetch all products from GHL
