@@ -1,5 +1,75 @@
 import { GHLProduct, GHLProductResponse, ProductCategory } from '@/types';
 
+// Demo data for fallback
+const demoProducts: GHLProduct[] = [
+  {
+    id: "1",
+    name: "Chocolate Chip Cookie",
+    description: "Classic chocolate chip cookie with premium ingredients",
+    price: 3.50,
+    category: "cookies",
+    image: "/images/chocolate-chip.jpg",
+    variants: [
+      { id: "1", name: "Single", price: 3.50 },
+      { id: "2", name: "4-Pack", price: 12.00 },
+      { id: "3", name: "6-Pack", price: 18.00 },
+      { id: "4", name: "12-Pack", price: 35.00 }
+    ]
+  },
+  {
+    id: "2", 
+    name: "Vanilla Sugar Cookie",
+    description: "Buttery soft sugar cookies with real vanilla extract",
+    price: 3.00,
+    category: "cookies",
+    image: "/images/vanilla-sugar.jpg",
+    variants: [
+      { id: "1", name: "Single", price: 3.00 },
+      { id: "2", name: "4-Pack", price: 10.00 },
+      { id: "3", name: "6-Pack", price: 15.00 },
+      { id: "4", name: "12-Pack", price: 28.00 }
+    ]
+  },
+  {
+    id: "3",
+    name: "4-Pack Cookie Box", 
+    description: "Assorted cookie 4-pack with variety of flavors",
+    price: 12.00,
+    category: "packs",
+    image: "/images/4-pack.jpg",
+    variants: [
+      { id: "1", name: "4-Pack", price: 12.00 }
+    ]
+  },
+  {
+    id: "4",
+    name: "6-Pack Cookie Box",
+    description: "Premium 6-pack with gourmet cookie selection", 
+    price: 18.00,
+    category: "packs",
+    image: "/images/6-pack.jpg",
+    variants: [
+      { id: "1", name: "6-Pack", price: 18.00 }
+    ]
+  },
+  {
+    id: "5",
+    name: "12-Pack Cookie Box",
+    description: "Family size 12-pack with mixed flavors",
+    price: 35.00, 
+    category: "packs",
+    image: "/images/12-pack.jpg",
+    variants: [
+      { id: "1", name: "12-Pack", price: 35.00 }
+    ]
+  }
+];
+
+const demoCategories: ProductCategory[] = [
+  { id: "1", name: "Cookies", description: "Individual cookie flavors" },
+  { id: "2", name: "Packs", description: "Cookie packs and boxes" }
+];
+
 export class GHLProductsIntegration {
   private apiKey: string;
   private locationId: string;
@@ -7,279 +77,156 @@ export class GHLProductsIntegration {
   private demoMode: boolean;
 
   constructor() {
-    this.apiKey = process.env.GHL_API_KEY || 'YOUR_GHL_API_KEY';
-    this.locationId = process.env.GHL_LOCATION_ID || 'YOUR_LOCATION_ID';
+    this.apiKey = process.env.GHL_API_KEY || '';
+    this.locationId = process.env.GHL_LOCATION_ID || '';
     this.baseUrl = 'https://services.leadconnectorhq.com';
-    // Demo unless both credentials look real
-    const hasRealKey = !!process.env.GHL_API_KEY && !this.apiKey.startsWith('YOUR');
-    const hasRealLoc = !!process.env.GHL_LOCATION_ID && !this.locationId.startsWith('YOUR');
-    this.demoMode = !(hasRealKey && hasRealLoc);
+    
+    // Enable demo mode if credentials are missing or are placeholders
+    this.demoMode = !this.apiKey || !this.locationId || 
+                   this.apiKey.includes('YOUR_') || 
+                   this.locationId.includes('YOUR_');
   }
 
-  // Fetch all products from GHL
-  async getProducts(): Promise<GHLProductResponse> {
-    try {
-      if (this.demoMode) {
-        return await this.getDemoProducts();
-      }
+  // Get all products
+  async getProducts(): Promise<{ success: boolean; products?: GHLProduct[]; error?: string }> {
+    if (this.demoMode) {
+      console.log('GHL Products: Using demo mode');
+      return { success: true, products: demoProducts };
+    }
 
-      const response = await this.makeAPICall('/products/', 'GET');
-      
+    try {
+      const response = await this.makeAPICall('/products');
       return {
         success: true,
         products: response.products || []
       };
     } catch (error) {
       console.error('GHL Products Error:', error);
-      // Fallback to demo
-      return await this.getDemoProducts();
+      // Fallback to demo data on error
+      return { success: true, products: demoProducts };
     }
   }
 
-  // Fetch products by category
-  async getProductsByCategory(categoryId: string): Promise<GHLProductResponse> {
-    try {
-      if (this.demoMode) {
-        return await this.getDemoProductsByCategory(categoryId);
-      }
+  // Get products by category
+  async getProductsByCategory(categoryId: string): Promise<{ success: boolean; products?: GHLProduct[]; error?: string }> {
+    if (this.demoMode) {
+      const filteredProducts = demoProducts.filter(p => p.category === categoryId.toLowerCase());
+      return { success: true, products: filteredProducts };
+    }
 
-      const response = await this.makeAPICall(`/products/?category=${categoryId}`, 'GET');
-      
+    try {
+      const response = await this.makeAPICall(`/products?category=${categoryId}`);
       return {
         success: true,
         products: response.products || []
       };
     } catch (error) {
-      console.error('GHL Products by Category Error:', error);
-      // Fallback to demo
-      return await this.getDemoProductsByCategory(categoryId);
+      console.error('GHL Products Error:', error);
+      // Fallback to demo data on error
+      const filteredProducts = demoProducts.filter(p => p.category === categoryId.toLowerCase());
+      return { success: true, products: filteredProducts };
     }
   }
 
-  // Fetch product categories
+  // Get all categories
   async getCategories(): Promise<{ success: boolean; categories?: ProductCategory[]; error?: string }> {
-    try {
-      if (this.demoMode) {
-        return await this.getDemoCategories();
-      }
+    if (this.demoMode) {
+      return { success: true, categories: demoCategories };
+    }
 
-      const response = await this.makeAPICall('/product-categories/', 'GET');
-      
+    try {
+      const response = await this.makeAPICall('/categories');
       return {
         success: true,
         categories: response.categories || []
       };
     } catch (error) {
       console.error('GHL Categories Error:', error);
-      // Fallback to demo
-      return await this.getDemoCategories();
+      // Fallback to demo data on error
+      return { success: true, categories: demoCategories };
     }
   }
 
   // Get single product by ID
   async getProduct(productId: string): Promise<{ success: boolean; product?: GHLProduct; error?: string }> {
+    if (this.demoMode) {
+      const product = demoProducts.find(p => p.id === productId);
+      if (!product) {
+        return { success: false, error: 'Product not found' };
+      }
+      return { success: true, product };
+    }
+
     try {
-      if (this.demoMode) {
-        return await this.getDemoProduct(productId);
+      const allProducts = await this.getProducts();
+      
+      if (!allProducts.success || !allProducts.products) {
+        return { success: false, error: 'Failed to fetch products' };
       }
 
-      const response = await this.makeAPICall(`/products/${productId}`, 'GET');
+      const product = allProducts.products.find(p => p.id === productId);
       
+      if (!product) {
+        return { success: false, error: 'Product not found' };
+      }
+
       return {
         success: true,
-        product: response.product
+        product
       };
     } catch (error) {
       console.error('GHL Product Error:', error);
-      // Fallback to demo
-      return await this.getDemoProduct(productId);
-    }
-  }
-
-  // Demo products for development
-  private async getDemoProducts(): Promise<GHLProductResponse> {
-    console.log('Demo Mode: Returning mock products');
-    
-    // Simulate network delay
-    await new Promise(resolve => setTimeout(resolve, 500));
-    
-    const demoProducts: GHLProduct[] = [
-      {
-        id: 'prod_1',
-        name: 'Chocolate Chip Cookie',
-        description: 'Classic chocolate chip cookie with premium ingredients',
-        price: 4.99,
-        category: 'cookies',
-        image: '/images/products/chocolate-chip.jpg',
-        sku: 'CC-001',
-        stock: 50,
-        isActive: true,
-        customFields: {
-          calories: '650 cal',
-          category: 'chocolate'
-        }
-      },
-      {
-        id: 'prod_2',
-        name: 'Vanilla Sugar Cookie',
-        description: 'Buttery soft sugar cookies with real vanilla extract',
-        price: 4.99,
-        category: 'cookies',
-        image: '/images/products/vanilla-sugar.jpg',
-        sku: 'VSC-001',
-        stock: 30,
-        isActive: true,
-        customFields: {
-          calories: '600 cal',
-          category: 'classic'
-        }
-      },
-      {
-        id: 'prod_3',
-        name: '4-Pack Cookie Box',
-        description: 'Assorted cookie 4-pack with variety of flavors',
-        price: 18.99,
-        category: 'packs',
-        image: '/images/products/4-pack.jpg',
-        sku: '4PK-001',
-        stock: 25,
-        isActive: true,
-        customFields: {
-          savings: 'Save 49%',
-          size: '4-pack'
-        }
-      },
-      {
-        id: 'prod_4',
-        name: '6-Pack Cookie Box',
-        description: 'Premium 6-pack with gourmet cookie selection',
-        price: 24.99,
-        category: 'packs',
-        image: '/images/products/6-pack.jpg',
-        sku: '6PK-001',
-        stock: 20,
-        isActive: true,
-        customFields: {
-          savings: 'Save 36%',
-          size: '6-pack'
-        }
-      },
-      {
-        id: 'prod_5',
-        name: '12-Pack Cookie Box',
-        description: 'Family size 12-pack with mixed flavors',
-        price: 48.99,
-        category: 'packs',
-        image: '/images/products/12-pack.jpg',
-        sku: '12PK-001',
-        stock: 15,
-        isActive: true,
-        customFields: {
-          savings: 'Save 18%',
-          size: '12-pack'
-        }
+      // Fallback to demo data on error
+      const product = demoProducts.find(p => p.id === productId);
+      if (!product) {
+        return { success: false, error: 'Product not found' };
       }
-    ];
-
-    return {
-      success: true,
-      products: demoProducts
-    };
-  }
-
-  // Demo products by category
-  private async getDemoProductsByCategory(categoryId: string): Promise<GHLProductResponse> {
-    const allProducts = await this.getDemoProducts();
-    if (!allProducts.success || !allProducts.products) {
-      return allProducts;
+      return { success: true, product };
     }
-
-    const filteredProducts = allProducts.products.filter(
-      product => product.category === categoryId
-    );
-
-    return {
-      success: true,
-      products: filteredProducts
-    };
   }
 
-  // Demo categories
-  private async getDemoCategories(): Promise<{ success: boolean; categories?: ProductCategory[]; error?: string }> {
-    console.log('Demo Mode: Returning mock categories');
-    
-    await new Promise(resolve => setTimeout(resolve, 300));
-    
-    const demoCategories: ProductCategory[] = [
-      {
-        id: 'cat_1',
-        name: 'Cookies',
-        description: 'Individual cookie flavors'
-      },
-      {
-        id: 'cat_2',
-        name: 'Packs',
-        description: 'Multi-cookie packages'
-      },
-      {
-        id: 'cat_3',
-        name: 'Seasonal',
-        description: 'Limited time seasonal flavors'
-      }
-    ];
-
-    return {
-      success: true,
-      categories: demoCategories
-    };
-  }
-
-  // Demo single product
-  private async getDemoProduct(productId: string): Promise<{ success: boolean; product?: GHLProduct; error?: string }> {
-    const allProducts = await this.getDemoProducts();
-    if (!allProducts.success || !allProducts.products) {
-      return { success: false, error: 'Failed to fetch products' };
-    }
-
-    const product = allProducts.products.find(p => p.id === productId);
-    
-    if (!product) {
-      return { success: false, error: 'Product not found' };
-    }
-
-    return {
-      success: true,
-      product
-    };
-  }
-
-  // Make API call to GHL
-  private async makeAPICall(endpoint: string, method: string = 'GET', data: any = null) {
+  // Make API call to GHL with timeout and retry logic
+  private async makeAPICall(endpoint: string, method: string = 'GET', data: any = null, retries: number = 2) {
     const url = `${this.baseUrl}${endpoint}`;
-    const options: RequestInit = {
-      method,
-      headers: {
-        'Authorization': `Bearer ${this.apiKey}`,
-        'Content-Type': 'application/json',
-        'Version': '2021-07-28'
+    
+    for (let attempt = 0; attempt <= retries; attempt++) {
+      try {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 15000); // 15 second timeout
+        
+        const options: RequestInit = {
+          method,
+          headers: {
+            'Authorization': `Bearer ${this.apiKey}`,
+            'Content-Type': 'application/json',
+            'Version': '2021-07-28'
+          },
+          signal: controller.signal
+        };
+
+        if (data && (method === 'POST' || method === 'PUT')) {
+          options.body = JSON.stringify(data);
+        }
+
+        const response = await fetch(url, options);
+        clearTimeout(timeoutId);
+        
+        if (!response.ok) {
+          throw new Error(`API call failed: ${response.status} ${response.statusText}`);
+        }
+
+        return await response.json();
+      } catch (error: any) {
+        clearTimeout(timeoutId);
+        
+        if (attempt === retries) {
+          console.error(`GHL API Call Error (attempt ${attempt + 1}/${retries + 1}):`, error);
+          throw error;
+        }
+        
+        console.warn(`GHL API Call attempt ${attempt + 1} failed, retrying...`, error.message);
+        await new Promise(resolve => setTimeout(resolve, 1000 * (attempt + 1))); // Exponential backoff
       }
-    };
-
-    if (data && (method === 'POST' || method === 'PUT')) {
-      options.body = JSON.stringify(data);
-    }
-
-    try {
-      const response = await fetch(url, options);
-      
-      if (!response.ok) {
-        throw new Error(`API call failed: ${response.status} ${response.statusText}`);
-      }
-
-      return await response.json();
-    } catch (error) {
-      console.error('GHL API Call Error:', error);
-      throw error;
     }
   }
 }
