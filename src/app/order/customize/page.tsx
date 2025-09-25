@@ -1,8 +1,8 @@
 "use client";
-import React, { Suspense, useMemo, useState } from "react";
+import React, { Suspense, useMemo, useState, useEffect } from "react";
 import { useSearchParams, useRouter } from 'next/navigation';
-import { cookieFlavors, packOptions } from '@/lib/data';
-import { SelectedCookie } from '@/types';
+import { packOptions } from '@/lib/data';
+import { SelectedCookie, CookieFlavor } from '@/types';
 import { useCart } from '@/lib/cart-context';
 import Header from '@/components/dashboard/Header';
 import Footer from '@/components/dashboard/Footer';
@@ -14,7 +14,33 @@ function CustomizeInner() {
   const packId = params.get('pack') || '4pack';
   const pack = useMemo(() => packOptions.find(p => p.id === packId) || packOptions[0], [packId]);
   const [items, setItems] = useState<SelectedCookie[]>([]);
+  const [flavors, setFlavors] = useState<CookieFlavor[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const { addToCart } = useCart();
+
+  useEffect(() => {
+    fetchFlavors();
+  }, []);
+
+  const fetchFlavors = async () => {
+    try {
+      setLoading(true);
+      const response = await fetch('/api/flavors');
+      const data = await response.json();
+      
+      if (data.success && data.flavors) {
+        setFlavors(data.flavors);
+      } else {
+        setError('Failed to fetch flavors');
+      }
+    } catch (err) {
+      setError('Failed to fetch flavors');
+      console.error('Error fetching flavors:', err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const totalSelected = items.reduce((s,i)=>s+i.quantity,0);
   const remaining = pack.size - totalSelected;
@@ -24,7 +50,7 @@ function CustomizeInner() {
       const cur = prev.find(i=>i.id===flavorId)?.quantity || 0;
       const next = Math.max(0, Math.min(cur + delta, pack.size));
       const others = prev.filter(i=>i.id!==flavorId);
-      return next===0 ? others : [...others, { id: flavorId, name: cookieFlavors.find(f=>f.id===flavorId)?.name || '', quantity: next }];
+      return next===0 ? others : [...others, { id: flavorId, name: flavors.find(f=>f.id===flavorId)?.name || '', quantity: next }];
     });
   };
 
@@ -46,6 +72,35 @@ function CustomizeInner() {
 
   const gridCols = useMemo(() => Math.min(pack.size, 6), [pack.size]);
 
+  if (loading) {
+    return (
+      <div className="customize">
+        <Header />
+        <div className="loading-container">
+          <div className="loading-spinner"></div>
+          <h2>Loading flavors...</h2>
+        </div>
+        <Footer />
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="customize">
+        <Header />
+        <div className="error-container">
+          <h2>Error loading flavors</h2>
+          <p>{error}</p>
+          <button onClick={fetchFlavors} className="retry-btn">
+            Try Again
+          </button>
+        </div>
+        <Footer />
+      </div>
+    );
+  }
+
   return (
     <div className="customize">
       <Header />
@@ -58,7 +113,7 @@ function CustomizeInner() {
             <div className="tray-shelf" style={{ gridTemplateColumns: `repeat(${gridCols}, 1fr)` }}>
               {Array.from({ length: pack.size }).map((_, idx) => {
                 const fid = filledSlots[idx];
-                const flavor = fid ? cookieFlavors.find(f=>f.id===fid) : undefined;
+                const flavor = fid ? flavors.find(f=>f.id===fid) : undefined;
                 return (
                   <div key={idx} className={`slot ${fid ? 'filled' : 'empty'}`} title={flavor?.name || 'Empty'}>
                     <div className={`cookie-vis ${fid ? 'on' : ''}`}>
@@ -78,13 +133,14 @@ function CustomizeInner() {
           <h1 className="select-title">Select {pack.size} Flavors</h1>
 
           <div className="flavors-list">
-            {cookieFlavors.map(f => (
+            {flavors.map(f => (
               <div key={f.id} className="flavor-row">
                 <div className="flavor-main">
                   <div className="thumb" />
                   <div className="meta">
                     <div className="name">{f.name}</div>
                     <div className="calories">{f.calories}</div>
+                    {f.surcharge && <div className="surcharge">{f.surcharge}</div>}
                   </div>
                 </div>
 
@@ -112,6 +168,52 @@ function CustomizeInner() {
         .customize { padding-top: 6rem; }
         .customize-container { max-width: 1280px; margin: 0 auto; padding: 0 2rem 2rem; display: grid; grid-template-columns: 1fr 520px; gap: 2rem; }
 
+        .loading-container,
+        .error-container {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          min-height: 400px;
+          text-align: center;
+        }
+
+        .loading-spinner {
+          width: 40px;
+          height: 40px;
+          border: 4px solid #f3f3f3;
+          border-top: 4px solid rgb(255 185 205/var(--tw-bg-opacity));
+          border-radius: 50%;
+          animation: spin 1s linear infinite;
+          margin-bottom: 1rem;
+        }
+
+        @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+
+        .error-container h2 {
+          color: #e91e63;
+          margin-bottom: 1rem;
+        }
+
+        .retry-btn {
+          background: rgb(255 185 205/var(--tw-bg-opacity));
+          color: white;
+          border: none;
+          padding: 12px 24px;
+          border-radius: 8px;
+          font-weight: 600;
+          cursor: pointer;
+          transition: all 0.3s ease;
+        }
+
+        .retry-btn:hover {
+          background: rgb(255 185 205/var(--tw-bg-opacity));
+          transform: translateY(-1px);
+        }
+
         /* Left hero resembling the screenshots */
         .hero-panel { background: rgb(255 185 205/var(--tw-bg-opacity)); --tw-bg-opacity: 1; border-radius: 18px; min-height: 560px; display:flex; align-items:center; justify-content:center; }
         .tray { width: 82%; max-width: 760px; aspect-ratio: 16/9; position: relative; }
@@ -134,6 +236,7 @@ function CustomizeInner() {
         .meta { display:flex; flex-direction:column; }
         .name { font-weight: 800; }
         .calories { font-size:.85rem; color:#666; }
+        .surcharge { font-size:.8rem; color:rgb(255 185 205/var(--tw-bg-opacity)); font-weight: 600; }
         .qty { display:flex; align-items:center; gap:10px; }
         .qty-btn { width: 42px; height: 42px; border-radius: 9999px; background: white; color: black; border: 2px solid #eee; font-weight: 900; font-size: 1.1rem; }
         .qty-btn:disabled { opacity:.5; }
@@ -162,4 +265,3 @@ export default function Customize() {
     </Suspense>
   );
 }
-
