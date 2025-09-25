@@ -31,7 +31,7 @@ export default function OrderLanding() {
               </div>
             </Link>
 
-            <Link href="/order/location">
+            <Link href="/order/menu">
               <div className="choice-card pickup">
                 <div className="card-illustration">
                   <AnimatedCanvasImage

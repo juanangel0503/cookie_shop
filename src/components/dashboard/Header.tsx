@@ -98,7 +98,6 @@ export default function Header() {
           <nav className="menu-nav">
             <Link href="/" className="menu-link" onClick={toggleMenu}>Home</Link>
             <Link href="/order" className="menu-link" onClick={toggleMenu}>Order</Link>
-            <Link href="/order/location" className="menu-link" onClick={toggleMenu}>Locations</Link>
             {getTotalItems() > 0 && (
               <button className="clear-cart-btn" onClick={handleClearCart}>
                 🗑️ Clear Cart ({getTotalItems()} items)
