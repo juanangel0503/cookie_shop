@@ -31,10 +31,8 @@ export class GHLProductsIntegration {
       };
     } catch (error) {
       console.error('GHL Products Error:', error);
-      return {
-        success: false,
-        error: error instanceof Error ? error.message : 'Failed to fetch products'
-      };
+      // Fallback to demo
+      return await this.getDemoProducts();
     }
   }
 
@@ -53,10 +51,8 @@ export class GHLProductsIntegration {
       };
     } catch (error) {
       console.error('GHL Products by Category Error:', error);
-      return {
-        success: false,
-        error: error instanceof Error ? error.message : 'Failed to fetch products by category'
-      };
+      // Fallback to demo
+      return await this.getDemoProductsByCategory(categoryId);
     }
   }
 
@@ -75,10 +71,8 @@ export class GHLProductsIntegration {
       };
     } catch (error) {
       console.error('GHL Categories Error:', error);
-      return {
-        success: false,
-        error: error instanceof Error ? error.message : 'Failed to fetch categories'
-      };
+      // Fallback to demo
+      return await this.getDemoCategories();
     }
   }
 
@@ -97,10 +91,8 @@ export class GHLProductsIntegration {
       };
     } catch (error) {
       console.error('GHL Product Error:', error);
-      return {
-        success: false,
-        error: error instanceof Error ? error.message : 'Failed to fetch product'
-      };
+      // Fallback to demo
+      return await this.getDemoProduct(productId);
     }
   }
 
