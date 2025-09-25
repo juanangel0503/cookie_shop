@@ -35,6 +35,17 @@ function CustomizeInner() {
     router.push('/checkout');
   };
 
+  // Build a flat list of selected flavor ids to fill slots in order of selection
+  const filledSlots = useMemo(() => {
+    const out: number[] = [];
+    // Preserve stable order: by flavor id ascending for predictability
+    const ordered = [...items].sort((a,b)=>a.id-b.id);
+    ordered.forEach(it => { for (let i=0;i<it.quantity;i++) out.push(it.id); });
+    return out.slice(0, pack.size);
+  }, [items, pack.size]);
+
+  const gridCols = useMemo(() => Math.min(pack.size, 6), [pack.size]);
+
   return (
     <div className="customize">
       <Header />
@@ -44,12 +55,20 @@ function CustomizeInner() {
         <div className="hero-panel" aria-hidden>
           <div className="tray">
             <div className="tray-lip" />
-            <div className="tray-shelf">
-              {/* Simple cookie placeholders for visual balance */}
-              <div className="cookie" />
-              <div className="cookie" />
-              <div className="cookie cookie-sprinkle" />
-              <div className="cookie" />
+            <div className="tray-shelf" style={{ gridTemplateColumns: `repeat(${gridCols}, 1fr)` }}>
+              {Array.from({ length: pack.size }).map((_, idx) => {
+                const fid = filledSlots[idx];
+                const flavor = fid ? cookieFlavors.find(f=>f.id===fid) : undefined;
+                return (
+                  <div key={idx} className={`slot ${fid ? 'filled' : 'empty'}`} title={flavor?.name || 'Empty'}>
+                    <div className={`cookie-vis ${fid ? 'on' : ''}`}>
+                      {/* optional sprinkle accent for variety */}
+                      {fid ? <span className="crumb" /> : null}
+                    </div>
+                    <span className="slot-num">{idx+1}</span>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>
@@ -97,10 +116,13 @@ function CustomizeInner() {
         .hero-panel { background: rgb(255 185 205/var(--tw-bg-opacity)); --tw-bg-opacity: 1; border-radius: 18px; min-height: 560px; display:flex; align-items:center; justify-content:center; }
         .tray { width: 82%; max-width: 760px; aspect-ratio: 16/9; position: relative; }
         .tray-lip { position:absolute; top:8%; left:0; right:0; height:16%; background: rgba(255,255,255,0.6); border-radius: 14px; box-shadow: 0 6px 0 rgba(0,0,0,0.12) inset; }
-        .tray-shelf { position:absolute; top:32%; left:4%; right:4%; bottom:16%; background: #fff; border-radius: 10px; box-shadow: 0 10px 0 rgba(0,0,0,0.12); display:flex; align-items:center; justify-content:space-around; padding: 0 1rem; }
-        .cookie { width: 96px; height:96px; background:#e9c09f; border-radius: 50%; box-shadow: inset 0 6px 0 rgba(0,0,0,0.08); }
-        .cookie-sprinkle { background: linear-gradient(145deg,#f8d7b6 0%,#f3caa2 100%); position: relative; }
-        .cookie-sprinkle:after { content:''; position:absolute; inset:0; background: repeating-linear-gradient(45deg, rgba(255,255,255,0.8) 0 6px, transparent 6px 12px); mask: radial-gradient(circle at 50% 50%, #000 62%, transparent 63%); border-radius:50%; }
+        .tray-shelf { position:absolute; top:32%; left:4%; right:4%; bottom:16%; background: #fff; border-radius: 10px; box-shadow: 0 10px 0 rgba(0,0,0,0.12); display:grid; align-items:center; justify-items:center; gap: 10px; padding: 12px; }
+
+        .slot { position: relative; width: 100%; aspect-ratio: 1/1; display:flex; align-items:center; justify-content:center; }
+        .slot-num { position:absolute; bottom: 6px; right: 8px; font-size: .7rem; color:#999; font-weight: 700; }
+        .cookie-vis { width: 78%; height: 78%; border-radius: 50%; background: #f1f1f1; box-shadow: inset 0 6px 0 rgba(0,0,0,0.06); }
+        .cookie-vis.on { background: #e9c09f; }
+        .crumb { display:block; width:100%; height:100%; border-radius:50%; background: radial-gradient(circle at 60% 40%, rgba(255,255,255,0.6) 0 14%, transparent 15% 100%); mix-blend-mode: overlay; }
 
         /* Right selection */
         .select-panel { display:flex; flex-direction:column; }
